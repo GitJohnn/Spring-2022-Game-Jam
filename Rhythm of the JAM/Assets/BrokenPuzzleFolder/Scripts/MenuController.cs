@@ -11,9 +11,10 @@ public class MenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mainMenu.SetActive(true);
-        gameScoresPanel.SetActive(false);
+        mainMenu.SetActive(false);
+        gameScoresPanel.SetActive(true);
         PausePanel.SetActive(false);
+        GameManager.instance.StartGame();
     }
 
     public void SinglePlayer()
