@@ -5,29 +5,19 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public AudioSource theMusic;
-
-    public bool startPlaying;
-
-    public BeatScroller theBS;
-
     public static GameManager instance;
 
-    private int currentScore;
-    public int scorePerNote = 100;
-    public int scorePerGoodNote = 125;
-    public int scorePerPerfectNote = 150;
+    public AudioSource theMusic;
 
-    private int currentMultiplier;
-    private int comboScore = 0;
-    private int highestComboScore = 0;
-    private int multiplierTracker = 0;
-    public int[] multiplierThresholds;
-    private int multiplierThresholdsIndex = 0;
+    public BeatScroller theBS;
+    public NoteHitsManager hitManager;    
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI multiplierText;
     public TextMeshProUGUI comboText;
+
+    private bool canStart = false;
+    private bool playingGame = false;
 
     private void Awake()
     {
@@ -36,84 +26,45 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: 0";
         multiplierText.text = "Multiplier x1";
         comboText.text = "Combo Hits: 0";
-        currentMultiplier = 1;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!startPlaying)
+        if (canStart && !playingGame)
         {
-            if (Input.anyKeyDown)
-            {
-                startPlaying = true;
-                theBS.hasStarted = true;
+            canStart = false;
+            playingGame = true;
+            theBS.hasStarted = true;
 
-                theMusic.Play();                
-            }
+            theMusic.Play();
         }
     }
 
-    public void NoteHit()
+    public void StartGame()
     {
-        comboScore++;
+        canStart = true;
+    }
 
-        if(multiplierThresholdsIndex < multiplierThresholds.Length)
+    public void UpdatePauseMusic()
+    {
+        //This function will switch between the music being paused and played.
+        if (theMusic.isPlaying)
         {
-            multiplierTracker++;
-
-            if (multiplierTracker >= multiplierThresholds[multiplierThresholdsIndex])
-            {
-                multiplierTracker = 0;
-                currentMultiplier *= 2;
-            }
-        }        
-
-        //currentScore += scorePerNote * currentMultiplier;
-        //UpdateUI();
-    }
-
-    public void NormalHit()
-    {
-        NoteHit();
-
-        currentScore += scorePerNote * currentMultiplier;
-        UpdateUI();
-    }
-
-    public void GoodHit()
-    {
-        NoteHit();
-
-        currentScore += scorePerGoodNote * currentMultiplier;
-        UpdateUI();
-    }
-
-    public void PerfectHit()
-    {
-        NoteHit();
-
-        currentScore += scorePerPerfectNote * currentMultiplier;
-        UpdateUI();
-    }
-
-    public void NoteMissed()
-    {
-        if(comboScore > highestComboScore)
-        {
-            highestComboScore = comboScore;
+            theMusic.Pause();
         }
-        comboScore = 0;
-        multiplierTracker = 0;
-        currentMultiplier = 1;
-        UpdateUI();
+        else
+        {
+            theMusic.Play();
+        }
     }
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
-        scoreText.text = "Score: " + currentScore;
-        comboText.text = "Combo Hits: " + comboScore;
-        multiplierText.text = "Multiplier x" + currentMultiplier;
+        scoreText.text = "Score: " + hitManager.CurrentScore;
+        comboText.text = "Combo Hits: " + hitManager.ComboScore;
+        multiplierText.text = "Multiplier x" + hitManager.CurrentMultiplier;
     }
 
 }

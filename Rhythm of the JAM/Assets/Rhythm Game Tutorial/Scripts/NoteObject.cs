@@ -21,17 +21,17 @@ public class NoteObject : MonoBehaviour
 
                 if(Mathf.Abs(transform.position.y) > 0.25f)
                 {
-                    GameManager.instance.NormalHit();
+                    NoteHitsManager.instance.NormalHit();
                     Instantiate(HitEffect, transform.position, Quaternion.identity);
                 }
                 else if(Mathf.Abs(transform.position.y) > 0.05f)
                 {
-                    GameManager.instance.GoodHit();
+                    NoteHitsManager.instance.GoodHit();
                     Instantiate(GoodEffect, transform.position, Quaternion.identity);
                 }
                 else
                 {
-                    GameManager.instance.PerfectHit();
+                    NoteHitsManager.instance.PerfectHit();
                     Instantiate(PerfectEffect, transform.position, Quaternion.identity);
                 }
             }
@@ -50,9 +50,8 @@ public class NoteObject : MonoBehaviour
     {
         if (other.tag.Equals("Activator") && this.gameObject.activeInHierarchy)
         {
-            GameManager.instance.NoteMissed();
+            NoteHitsManager.instance.NoteMissed();
             Instantiate(MissEffect, transform.position, Quaternion.identity);
-            Debug.Log("note missed");
             canBePressed = false;
         }
     }
