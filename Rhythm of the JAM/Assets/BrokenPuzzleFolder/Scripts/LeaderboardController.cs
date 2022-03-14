@@ -7,8 +7,7 @@ using TMPro;
 
 public class LeaderboardController : MonoBehaviour
 {
-    public TMP_InputField MemberID, PlayerScore;
-    public int ID;
+    public int ID { get; set; }
     int MaxScores = 12;
     public TextMeshProUGUI[] Entries;
 
@@ -53,11 +52,12 @@ public class LeaderboardController : MonoBehaviour
                 Debug.Log("Failed to get scores");
             }
         });
+        GameManager.instance.menuController.LeaderboardScreen();
     }
 
-    public void SubmitScore()
+    public void SubmitScore(string playerId, int playerScore)
     {
-        LootLockerSDKManager.SubmitScore(MemberID.text, int.Parse(PlayerScore.text), ID, (response) =>
+        LootLockerSDKManager.SubmitScore(playerId, playerScore, ID, (response) =>
         {
             if (response.success)
             {
@@ -68,5 +68,6 @@ public class LeaderboardController : MonoBehaviour
                 Debug.Log("Failed to upload score");
             }
         });
+        ShowScores();
     }
 }

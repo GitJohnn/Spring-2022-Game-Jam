@@ -44,7 +44,7 @@ public class SongManager : MonoBehaviour
         //Once game is in progress lets wait for the music to stop playing
         if (InProgress)
         {
-            if (!audioSource.isPlaying)
+            if (!audioSource.isPlaying && !GameManager.instance.IsPaused)
             {
                 SongEnded = true;
                 InProgress = false;

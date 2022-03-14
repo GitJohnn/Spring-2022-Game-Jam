@@ -41,6 +41,7 @@ public class NoteHitsManager : MonoBehaviour
             {
                 multiplierTracker = 0;
                 currentMultiplier *= 2;
+                multiplierThresholdsIndex++;
             }
         }
     }
@@ -50,7 +51,7 @@ public class NoteHitsManager : MonoBehaviour
         NoteHit();
 
         currentScore += scorePerNote * currentMultiplier;
-        GameManager.instance.UpdateUI();
+        GameManager.instance.scoreManager.UpdateUI();
     }
 
     public void GoodHit()
@@ -58,7 +59,7 @@ public class NoteHitsManager : MonoBehaviour
         NoteHit();
 
         currentScore += scorePerGoodNote * currentMultiplier;
-        GameManager.instance.UpdateUI();
+        GameManager.instance.scoreManager.UpdateUI();
     }
 
     public void PerfectHit()
@@ -66,7 +67,7 @@ public class NoteHitsManager : MonoBehaviour
         NoteHit();
 
         currentScore += scorePerPerfectNote * currentMultiplier;
-        GameManager.instance.UpdateUI();
+        GameManager.instance.scoreManager.UpdateUI();
     }
 
     public void NoteMissed()
@@ -78,6 +79,6 @@ public class NoteHitsManager : MonoBehaviour
         comboScore = 0;
         multiplierTracker = 0;
         currentMultiplier = 1;
-        GameManager.instance.UpdateUI();
+        GameManager.instance.scoreManager.UpdateUI();
     }
 }

@@ -1,31 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    public static ScoreManager Instance;
-    public AudioSource hitSFX;
-    public AudioSource missSFX;
-    public TMPro.TextMeshPro scoreText;
-    static int comboScore;
+    public NoteHitsManager hitManager;
+    public int leaderboardID;
+    public LeaderboardController leaderboard;
+    [Space()]
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI multiplierText;
+    public TextMeshProUGUI comboText;
+    public TMP_InputField playerName; 
+
     void Start()
     {
-        Instance = this;
-        comboScore = 0;
+        scoreText.text = "Score: 0";
+        multiplierText.text = "Multiplier x1";
+        comboText.text = "Combo Hits: 0";
+        leaderboard.ID = leaderboardID;
     }
-    public static void Hit()
+
+    public void SubmitScore()
     {
-        comboScore += 1;
-        //Instance.hitSFX.Play();
+        leaderboard.SubmitScore(playerName.text, hitManager.CurrentScore);
     }
-    public static void Miss()
+
+    public void UpdateUI()
     {
-        comboScore = 0;
-        //Instance.missSFX.Play();
-    }
-    private void Update()
-    {
-        scoreText.text = comboScore.ToString();
+        scoreText.text = "Score: " + hitManager.CurrentScore;
+        comboText.text = "Combo Hits: " + hitManager.ComboScore;
+        multiplierText.text = "Multiplier x" + hitManager.CurrentMultiplier;
     }
 }

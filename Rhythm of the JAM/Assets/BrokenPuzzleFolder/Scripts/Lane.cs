@@ -56,12 +56,12 @@ public class Lane : MonoBehaviour
                 }
                 else
                 {
-                    //print($"Hit inaccurate on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
+                    print($"Hit inaccurate on {inputIndex} note with {Math.Abs(audioTime - timeStamp)} delay");
                 }
             }
             if (timeStamp + marginOfError <= audioTime)
             {
-                //print($"Missed {inputIndex} note");
+                print($"Missed {inputIndex} note");
                 inputIndex++;
             }
         }
