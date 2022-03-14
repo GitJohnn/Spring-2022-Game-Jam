@@ -7,17 +7,21 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public AudioSource theMusic;
-
-    public BeatScroller theBS;
-    public NoteHitsManager hitManager;    
-
+    public SongManager songManager;
+    //public BeatScroller theBS;
+    public NoteHitsManager hitManager;
+    public MenuController menuController;
+    [Space()]
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI multiplierText;
     public TextMeshProUGUI comboText;
+    [Space()]
+    public KeyCode pauseKey;
 
     private bool canStart = false;
     private bool playingGame = false;
+
+    public bool IsPaused { get; set; } = false;
 
     private void Awake()
     {
@@ -25,20 +29,35 @@ public class GameManager : MonoBehaviour
 
         scoreText.text = "Score: 0";
         multiplierText.text = "Multiplier x1";
-        comboText.text = "Combo Hits: 0";
-        
+        comboText.text = "Combo Hits: 0";        
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Game start conditions
         if (canStart && !playingGame)
         {
             canStart = false;
             playingGame = true;
-            theBS.hasStarted = true;
+            songManager.CanStart = true;
+        }
 
-            theMusic.Play();
+        if (playingGame)
+        {
+            //Listen for pause button
+            if (Input.GetKeyDown(pauseKey))
+            {
+                menuController.PauseGame();
+            }
+            //Check if the track has ended
+            if (songManager.SongEnded)
+            {
+                Debug.Log("Song has ended");
+                playingGame = false;
+                songManager.SongEnded = false;
+                menuController.GameEndScreen();
+            }
         }
     }
 
@@ -47,16 +66,17 @@ public class GameManager : MonoBehaviour
         canStart = true;
     }
 
-    public void UpdatePauseMusic()
+    public void UpdatePauseMusic(bool isPaused)
     {
+        IsPaused = isPaused;
         //This function will switch between the music being paused and played.
-        if (theMusic.isPlaying)
+        if (songManager.audioSource.isPlaying)
         {
-            theMusic.Pause();
+            songManager.audioSource.Pause();
         }
         else
         {
-            theMusic.Play();
+            songManager.audioSource.Play();
         }
     }
 
