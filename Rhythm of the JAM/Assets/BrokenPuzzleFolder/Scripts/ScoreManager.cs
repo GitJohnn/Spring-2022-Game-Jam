@@ -20,11 +20,19 @@ public class ScoreManager : MonoBehaviour
         multiplierText.text = "Multiplier x1";
         comboText.text = "Combo Hits: 0";
         leaderboard.ID = leaderboardID;
+        leaderboard.StartSession();
+    }
+
+    public void ShowScore()
+    {
+        leaderboard.ShowScores();
     }
 
     public void SubmitScore()
     {
         leaderboard.SubmitScore(playerName.text, hitManager.CurrentScore);
+        Debug.Log("Submit attempt " + playerName.text + " " + hitManager.CurrentScore);
+        StartCoroutine(SwitchMenus());
     }
 
     public void UpdateUI()
@@ -32,5 +40,11 @@ public class ScoreManager : MonoBehaviour
         scoreText.text = "Score: " + hitManager.CurrentScore;
         comboText.text = "Combo Hits: " + hitManager.ComboScore;
         multiplierText.text = "Multiplier x" + hitManager.CurrentMultiplier;
+    }
+
+    IEnumerator SwitchMenus()
+    {
+        yield return new WaitUntil(()=> leaderboard.ShowScores());
+        GameManager.instance.menuController.LeaderboardScreen();
     }
 }

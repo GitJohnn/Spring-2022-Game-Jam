@@ -79,6 +79,7 @@ public class NoteHitsManager : MonoBehaviour
         comboScore = 0;
         multiplierTracker = 0;
         currentMultiplier = 1;
+        multiplierThresholdsIndex = 0;
         GameManager.instance.scoreManager.UpdateUI();
     }
 }
