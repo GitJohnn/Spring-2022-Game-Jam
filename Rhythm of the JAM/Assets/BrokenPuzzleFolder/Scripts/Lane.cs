@@ -50,7 +50,7 @@ public class Lane : MonoBehaviour
             {
                 if (Math.Abs(audioTime - timeStamp) < marginOfError)
                 {
-                    print($"Hit on {inputIndex} note");
+                    //print($"Hit on {inputIndex} note");
                     notes[inputIndex].DisableNote();
                     inputIndex++;
                 }

@@ -22,11 +22,10 @@ public class ButtonController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyToPress))
         {
-            if (!GameManager.instance.IsPaused)
+            if (!GameManager.instance.IsPaused && SongManager.Instance.InProgress)
             {
                 theSR.sprite = pressedImage;
             }
-            theSR.sprite = pressedImage;
         }
 
         if (Input.GetKeyUp(KeyToPress))

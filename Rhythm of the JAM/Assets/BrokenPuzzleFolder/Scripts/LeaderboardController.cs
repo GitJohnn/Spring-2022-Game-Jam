@@ -7,12 +7,16 @@ using TMPro;
 
 public class LeaderboardController : MonoBehaviour
 {
-    public TMP_InputField MemberID, PlayerScore;
     public int ID;
     int MaxScores = 12;
     public TextMeshProUGUI[] Entries;
 
-    private void Start()
+    private void Awake()
+    {
+        StartSession();
+    }
+
+    public void StartSession()
     {
         LootLockerSDKManager.StartSession("Player", (response) =>
         {
@@ -28,7 +32,7 @@ public class LeaderboardController : MonoBehaviour
     }
 
 
-    public void ShowScores()
+    public bool ShowScores()
     {
         LootLockerSDKManager.GetScoreList(ID, MaxScores, (response) =>
         {
@@ -53,11 +57,13 @@ public class LeaderboardController : MonoBehaviour
                 Debug.Log("Failed to get scores");
             }
         });
+
+        return true;
     }
 
     public void SubmitScore()
     {
-        LootLockerSDKManager.SubmitScore(MemberID.text, int.Parse(PlayerScore.text), ID, (response) =>
+        LootLockerSDKManager.SubmitScore("Test", 900, ID, (response) =>
         {
             if (response.success)
             {
@@ -68,5 +74,20 @@ public class LeaderboardController : MonoBehaviour
                 Debug.Log("Failed to upload score");
             }
         });
+    }
+
+    public void SubmitScore(string playerId, int playerScore)
+    {
+        LootLockerSDKManager.SubmitScore(playerId, playerScore, ID, (response) =>
+        {
+            if (response.success)
+            {
+                Debug.Log("Sucess!");
+            }
+            else
+            {
+                Debug.Log("Failed to upload score");
+            }
+        });        
     }
 }

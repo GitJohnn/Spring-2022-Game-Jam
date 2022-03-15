@@ -8,8 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public SongManager songManager;
-    //public BeatScroller theBS;
-    public NoteHitsManager hitManager;
+    public ScoreManager scoreManager;
     public MenuController menuController;
     [Space()]
     public TextMeshProUGUI scoreText;
@@ -48,7 +47,14 @@ public class GameManager : MonoBehaviour
             //Listen for pause button
             if (Input.GetKeyDown(pauseKey))
             {
-                menuController.PauseGame();
+                if (IsPaused)
+                {
+                    menuController.UnPauseGame();
+                }
+                else
+                {
+                    menuController.PauseGame();
+                }                
             }
             //Check if the track has ended
             if (songManager.SongEnded)
@@ -78,13 +84,6 @@ public class GameManager : MonoBehaviour
         {
             songManager.audioSource.Play();
         }
-    }
-
-    public void UpdateUI()
-    {
-        scoreText.text = "Score: " + hitManager.CurrentScore;
-        comboText.text = "Combo Hits: " + hitManager.ComboScore;
-        multiplierText.text = "Multiplier x" + hitManager.CurrentMultiplier;
     }
 
 }
