@@ -10,12 +10,15 @@ public class GameManager : MonoBehaviour
     public SongManager songManager;
     public ScoreManager scoreManager;
     public MenuController menuController;
+    public LeaderboardController leaderboardController;
     [Space()]
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI multiplierText;
     public TextMeshProUGUI comboText;
     [Space()]
     public KeyCode pauseKey;
+
+    private MusicLibrary currentMusic;
 
     private bool canStart = false;
     private bool playingGame = false;
@@ -67,9 +70,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void StartGame()
+    public void StartGame(MusicLibrary music)
     {
+        currentMusic = music;
+        songManager.SetAudioClip(currentMusic.audio);
+        songManager.SetFileLocation(currentMusic.fileLocation);
+        leaderboardController.SetLeaderboardID(currentMusic.leaderboardID);
         canStart = true;
+        menuController.StartSongFromMusicLibrary();
     }
 
     public void UpdatePauseMusic(bool isPaused)

@@ -19,7 +19,7 @@ public class ScoreManager : MonoBehaviour
         scoreText.text = "Score: 0";
         multiplierText.text = "Multiplier x1";
         comboText.text = "Combo Hits: 0";
-        leaderboard.ID = leaderboardID;
+        //leaderboard.ID = leaderboardID;
         leaderboard.StartSession();
     }
 

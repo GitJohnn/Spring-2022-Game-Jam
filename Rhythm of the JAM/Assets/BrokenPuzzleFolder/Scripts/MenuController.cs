@@ -6,9 +6,9 @@ using UnityEngine.EventSystems;
 
 public class MenuController : MonoBehaviour
 {
-    public GameObject mainMenu, gameScoresPanel, PausePanel, gameOptionsPanel, mainMenuOptionsPanel, gameScorePanel, leaderboardPanel;
+    public GameObject mainMenu, gameScoresPanel, PausePanel, gameOptionsPanel, mainMenuOptionsPanel, gameScorePanel, leaderboardPanel, musicLibraryPanel;
 
-    public GameObject gameStartButton, pauseFirstButton, optionsGameFirstButton, optionsMainMenuFirstButton, gamescoreFirstButton, leaderboardFirstButton;
+    public GameObject gameStartButton, pauseFirstButton, optionsGameFirstButton, optionsMainMenuFirstButton, gamescoreFirstButton, leaderboardFirstButton, musicLibraryFirstButton;
     
     // Start is called before the first frame update
     void Awake()
@@ -26,10 +26,16 @@ public class MenuController : MonoBehaviour
         mainMenuOptionsPanel.SetActive(false);
         gameScorePanel.SetActive(false);
         leaderboardPanel.SetActive(false);
+        musicLibraryPanel.SetActive(false);
     }
 
     public void SinglePlayer()
     {
+        //clear selected gameobject
+        EventSystem.current.SetSelectedGameObject(null);
+        //set selected gameobject
+        EventSystem.current.SetSelectedGameObject(musicLibraryFirstButton);
+
         mainMenu.SetActive(false);
         gameScoresPanel.SetActive(true);
         PausePanel.SetActive(false);
@@ -37,7 +43,7 @@ public class MenuController : MonoBehaviour
         mainMenuOptionsPanel.SetActive(false);
         gameScorePanel.SetActive(false);
         leaderboardPanel.SetActive(false);
-        GameManager.instance.StartGame();
+        musicLibraryPanel.SetActive(true);
     }
 
     public void Multiplayer()
@@ -59,6 +65,7 @@ public class MenuController : MonoBehaviour
         mainMenuOptionsPanel.SetActive(true);
         gameScorePanel.SetActive(false);
         leaderboardPanel.SetActive(false);
+        musicLibraryPanel.SetActive(false);
     }
 
     public void GameOptions()
@@ -75,6 +82,7 @@ public class MenuController : MonoBehaviour
         mainMenuOptionsPanel.SetActive(false);
         gameScorePanel.SetActive(false);
         leaderboardPanel.SetActive(false);
+        musicLibraryPanel.SetActive(false);
     }
 
     public void MainMenuReturnOptions()
@@ -91,6 +99,7 @@ public class MenuController : MonoBehaviour
         mainMenuOptionsPanel.SetActive(false);
         gameScorePanel.SetActive(false);
         leaderboardPanel.SetActive(false);
+        musicLibraryPanel.SetActive(false);
     }
 
     public void GameReturnOptions()
@@ -107,6 +116,7 @@ public class MenuController : MonoBehaviour
         mainMenuOptionsPanel.SetActive(false);
         gameScorePanel.SetActive(false);
         leaderboardPanel.SetActive(false);
+        musicLibraryPanel.SetActive(false);
     }
 
     public void PauseGame()
@@ -124,6 +134,7 @@ public class MenuController : MonoBehaviour
         mainMenuOptionsPanel.SetActive(false);
         gameScorePanel.SetActive(false);
         leaderboardPanel.SetActive(false);
+        musicLibraryPanel.SetActive(false);
         GameManager.instance.UpdatePauseMusic(true);
         Time.timeScale = 0;
     }
@@ -137,6 +148,7 @@ public class MenuController : MonoBehaviour
         mainMenuOptionsPanel.SetActive(false);
         gameScorePanel.SetActive(false);
         leaderboardPanel.SetActive(false);
+        musicLibraryPanel.SetActive(false);
         GameManager.instance.UpdatePauseMusic(false);
         Time.timeScale = 1;
     }
@@ -155,6 +167,7 @@ public class MenuController : MonoBehaviour
         mainMenuOptionsPanel.SetActive(false);
         gameScorePanel.SetActive(true);
         leaderboardPanel.SetActive(false);
+        musicLibraryPanel.SetActive(false);
     }
 
     public void LeaderboardScreen()
@@ -171,11 +184,36 @@ public class MenuController : MonoBehaviour
         mainMenuOptionsPanel.SetActive(false);
         gameScorePanel.SetActive(false);
         leaderboardPanel.SetActive(true);
+        musicLibraryPanel.SetActive(false);
     }
 
-    public void ReturnToMusicSelection()
+    public void StartSongFromMusicLibrary()
     {
+        PausePanel.SetActive(false);
+        gameScoresPanel.SetActive(true);
+        mainMenu.SetActive(false);
+        gameOptionsPanel.SetActive(false);
+        mainMenuOptionsPanel.SetActive(false);
+        gameScorePanel.SetActive(false);
+        leaderboardPanel.SetActive(false);
+        musicLibraryPanel.SetActive(false);
+    }
 
+    public void OpenMusicSelection()
+    {
+        //clear selected gameobject
+        EventSystem.current.SetSelectedGameObject(null);
+        //set selected gameobject
+        EventSystem.current.SetSelectedGameObject(musicLibraryFirstButton);
+
+        PausePanel.SetActive(false);
+        gameScoresPanel.SetActive(false);
+        mainMenu.SetActive(false);
+        gameOptionsPanel.SetActive(false);
+        mainMenuOptionsPanel.SetActive(false);
+        gameScorePanel.SetActive(false);
+        leaderboardPanel.SetActive(false);
+        musicLibraryPanel.SetActive(true);
     }
 
     public void QuitButton()

@@ -110,6 +110,16 @@ public class SongManager : MonoBehaviour
         audioSource.Play();
     }
 
+    public void SetAudioClip(AudioClip audio)
+    {
+        audioSource.clip = audio;
+    }
+
+    public void SetFileLocation(string location)
+    {
+        fileLocation = location;
+    }
+
     public static double GetAudioSourceTime()
     {
         return (double)Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency;
