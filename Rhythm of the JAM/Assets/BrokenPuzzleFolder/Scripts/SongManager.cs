@@ -20,7 +20,7 @@ public class SongManager : MonoBehaviour
     public bool CanStart { get; set; }
     public bool InProgress { get; set; }
     public bool SongEnded { get; set; }
-    public string fileLocation;
+    public string fileLocation { get; set; }
     public float noteTime;
     public float noteSpawnY;
     public float noteTapY;
@@ -111,6 +111,13 @@ public class SongManager : MonoBehaviour
         audioSource.Play();
     }
 
+    public void ExitSong()
+    {
+        foreach (var lane in lanes) lane.ClearTimeStamps();
+        SongEnded = false;
+        InProgress = false;
+    }
+
     public void SetAudioClip(AudioClip audio)
     {
         audioSource.clip = audio;
@@ -123,6 +130,6 @@ public class SongManager : MonoBehaviour
 
     public static double GetAudioSourceTime()
     {
-        return (double)Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency;
+        return ((double)Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency);
     }
 }

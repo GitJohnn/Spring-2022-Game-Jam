@@ -15,13 +15,21 @@ public class MusicSelectionPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!playingSong)
+        if (!GameManager.instance.PlayingGame)
         {
-            audioSource.clip = songSelection[songIndex].audio;
-            audioSource.time = audioSource.clip.length * 0.5f;
-            audioSource.Play();
-            playingSong = true;
+            if (!playingSong)
+            {
+                audioSource.clip = songSelection[songIndex].audio;
+                audioSource.time = audioSource.clip.length * 0.5f;
+                audioSource.Play();
+                playingSong = true;
+            }
         }
+        else
+        {
+            audioSource.Stop();
+        }
+
     }
 
     public void SetSongIndex(int index)
@@ -34,10 +42,6 @@ public class MusicSelectionPlayer : MonoBehaviour
 
     public void SetSongSelection(List<MusicLibrary> songArray)
     {
-        songSelection = songArray;
-        foreach(MusicLibrary song in songSelection)
-        {
-            Debug.Log(song.name);
-        }        
+        songSelection = songArray;     
     }
 }

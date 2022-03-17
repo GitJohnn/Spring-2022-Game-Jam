@@ -10,7 +10,7 @@ public class SetVolume : MonoBehaviour
 
     public Slider[] sliders;
 
-    private void Awake()
+    private void Start()
     {
         SetLevel(1f);
     }

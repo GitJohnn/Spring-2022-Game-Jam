@@ -36,6 +36,11 @@ public class ScoreManager : MonoBehaviour
         hitManager.ResetScores();
     }
 
+    public void ResetScores()
+    {
+        hitManager.ResetScores();
+    }
+
     public void UpdateUI()
     {
         scoreText.text = "Score: " + hitManager.CurrentScore;

@@ -21,7 +21,6 @@ public class ScrollRectPosition : MonoBehaviour
         contentPanel = GetComponent<ScrollRect>().content;
         musicPlayer = GetComponent<MusicSelectionPlayer>();
         contentHeight = contentPanel.GetChild(0).GetComponent<RectTransform>().rect.height;
-        Debug.Log(contentPanel.childCount);
         for(int i = 0; i < contentPanel.childCount; i++)
         {
             SongSelected songObj = contentPanel.GetChild(i).GetComponent<SongSelected>();
@@ -53,7 +52,6 @@ public class ScrollRectPosition : MonoBehaviour
         }
 
         int childIndex = selected.transform.GetSiblingIndex();
-        Debug.Log(childIndex);
         musicPlayer.SetSongIndex(childIndex);
         float scrollPos =  childIndex * contentHeight;
 
