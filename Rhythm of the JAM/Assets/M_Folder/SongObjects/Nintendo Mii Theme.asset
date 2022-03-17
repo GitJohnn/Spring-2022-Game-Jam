@@ -15,4 +15,4 @@ MonoBehaviour:
   songName: Nintendo Wii Mii Theme
   audio: {fileID: 8300000, guid: f9a1469220eabb641ba8a3d1308f0c26, type: 3}
   fileLocation: Wii1.mid
-  leaderboardID: 1893
+  leaderboardID: 2005
