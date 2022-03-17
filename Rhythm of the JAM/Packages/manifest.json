@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.lootlocker.lootlockersdk": "file:D:/Unity Projects/GameEngineProjects/UnityPackages/unity-sdk-main",
+    "com.lootlocker.lootlockersdk": "file:C:/Users/ilike/Downloads/unity-sdk-main/unity-sdk-main",
     "com.unity.2d.animation": "5.0.10",
     "com.unity.2d.pixel-perfect": "4.0.1",
     "com.unity.2d.psdimporter": "4.1.3",
@@ -15,7 +15,6 @@
     "com.unity.textmeshpro": "3.0.6",
     "com.unity.timeline": "1.4.8",
     "com.unity.ugui": "1.0.0",
-    "com.unity.uiextensions": "file:D:/Unity Projects/GameEngineProjects/UnityPackages/UnityUIExtensions-unity-ui-extensions-001c2b93e975",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",

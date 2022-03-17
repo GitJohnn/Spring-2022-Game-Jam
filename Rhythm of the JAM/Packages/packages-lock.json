@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.lootlocker.lootlockersdk": {
-      "version": "file:D:/Unity Projects/GameEngineProjects/UnityPackages/unity-sdk-main",
+      "version": "file:C:/Users/ilike/Downloads/unity-sdk-main/unity-sdk-main",
       "depth": 0,
       "source": "local",
       "dependencies": {
@@ -173,12 +173,6 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
-    },
-    "com.unity.uiextensions": {
-      "version": "file:D:/Unity Projects/GameEngineProjects/UnityPackages/UnityUIExtensions-unity-ui-extensions-001c2b93e975",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

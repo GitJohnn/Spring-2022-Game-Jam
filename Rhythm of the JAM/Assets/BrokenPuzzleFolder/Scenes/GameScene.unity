@@ -1404,7 +1404,7 @@ AudioSource:
   m_GameObject: {fileID: 138126268}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 4a2080a0c70c27d49aa8822df3791b2d, type: 2}
   m_audioClip: {fileID: 8300000, guid: cec989d177caa5c47ab0562e919249f7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.4
@@ -3441,9 +3441,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6264609b7e455c04e9e9f2ddabf3e8d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nubOfSongs: 10
-  buttonPrefab: {fileID: 154029811709603723, guid: d8a2142dc02fc4349bc9d54034c4cc16, type: 3}
-  buttonList: []
 --- !u!1 &323132773
 GameObject:
   m_ObjectHideFlags: 0
@@ -13930,6 +13927,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1770115196}
   - component: {fileID: 1770115197}
+  - component: {fileID: 1770115198}
   m_Layer: 5
   m_Name: GameSlider
   m_TagString: Untagged
@@ -14003,13 +14001,38 @@ MonoBehaviour:
   m_FillRect: {fileID: 2122412624}
   m_HandleRect: {fileID: 1149048851}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1770115198}
+        m_TargetAssemblyTypeName: SetVolume, Assembly-CSharp
+        m_MethodName: SetLevel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1770115198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770115195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade5de7fe77af6446a19ffc0a9160421, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixer: {fileID: 24100000, guid: 4a2080a0c70c27d49aa8822df3791b2d, type: 2}
 --- !u!1 &1779133656
 GameObject:
   m_ObjectHideFlags: 0
@@ -16542,34 +16565,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9dccd2761b104249a8eb0636b550188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingScreen: 0
-  PageStep: 1.66
-  Pagination: {fileID: 0}
-  PrevButton: {fileID: 0}
-  NextButton: {fileID: 0}
-  transitionSpeed: 7.5
-  UseHardSwipe: 0
-  UseFastSwipe: 0
-  UseSwipeDeltaThreshold: 0
-  FastSwipeThreshold: 100
-  SwipeVelocityThreshold: 100
-  SwipeDeltaThreshold: 5
-  UseTimeScale: 1
-  MaskArea: {fileID: 0}
-  MaskBuffer: 1
-  JumpOnEnable: 0
-  RestartOnEnable: 0
-  UseParentTransform: 1
-  ChildObjects: []
-  m_OnSelectionChangeStartEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelectionPageChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnSelectionChangeEndEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &2096491863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16664,15 +16659,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b35bd2ce6e015bb4f840cf9267dbe421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewportRectTransform: {fileID: 2096491861}
-  targetScrollRect: {fileID: 2096491863}
-  scrollAxes: 17
-  usedScrollMethod: 0
-  scrollSpeed: 50
-  endOfListJumpScrollSpeed: 150
-  jumpOffsetThreshold: 1
-  cancelScrollMouseButtons: 273
-  cancelScrollKeys: 
 --- !u!114 &2096491868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16685,7 +16671,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61fe0f6272fa94d4eb3dafc6aecd50ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitByUser: 0
 --- !u!1 &2118293670
 GameObject:
   m_ObjectHideFlags: 0
