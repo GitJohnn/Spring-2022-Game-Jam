@@ -34,7 +34,7 @@ public class SongManager : MonoBehaviour
 
     public static MidiFile midiFile;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Instance = this;
     }
@@ -107,6 +107,7 @@ public class SongManager : MonoBehaviour
 
     public void StartSong()
     {
+        audioSource.time = 0;
         audioSource.Play();
     }
 

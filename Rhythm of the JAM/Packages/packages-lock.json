@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.lootlocker.lootlockersdk": {
-      "version": "file:C:/Users/ilike/Downloads/unity-sdk-main/unity-sdk-main",
+      "version": "file:D:/Unity Projects/GameEngineProjects/UnityPackages/unity-sdk-main",
       "depth": 0,
       "source": "local",
       "dependencies": {

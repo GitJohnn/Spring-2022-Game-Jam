@@ -80,6 +80,11 @@ public class GameManager : MonoBehaviour
         menuController.StartSongFromMusicLibrary();
     }
 
+    public void ReturnMusicLibrary()
+    {
+
+    }
+
     public void UpdatePauseMusic(bool isPaused)
     {
         IsPaused = isPaused;

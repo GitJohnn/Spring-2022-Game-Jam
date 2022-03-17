@@ -33,6 +33,7 @@ public class ScoreManager : MonoBehaviour
         leaderboard.SubmitScore(playerName.text, hitManager.CurrentScore);
         Debug.Log("Submit attempt " + playerName.text + " " + hitManager.CurrentScore);
         StartCoroutine(SwitchMenus());
+        hitManager.ResetScores();
     }
 
     public void UpdateUI()
