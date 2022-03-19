@@ -82,4 +82,13 @@ public class NoteHitsManager : MonoBehaviour
         multiplierThresholdsIndex = 0;
         GameManager.instance.scoreManager.UpdateUI();
     }
+
+    public void ResetScores()
+    {
+        comboScore = 0;
+        multiplierTracker = 0;
+        currentMultiplier = 1;
+        currentScore = 0;
+        multiplierThresholdsIndex = 0;
+    }
 }

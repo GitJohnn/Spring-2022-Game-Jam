@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public SongManager songManager;
     public ScoreManager scoreManager;
     public MenuController menuController;
+    public LeaderboardController leaderboardController;
     [Space()]
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI multiplierText;
@@ -17,9 +18,11 @@ public class GameManager : MonoBehaviour
     [Space()]
     public KeyCode pauseKey;
 
-    private bool canStart = false;
-    private bool playingGame = false;
+    private MusicLibrary currentMusic;
 
+    private bool canStart = false;
+
+    public bool PlayingGame { get; set; } = false;
     public bool IsPaused { get; set; } = false;
 
     private void Awake()
@@ -35,14 +38,14 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //Game start conditions
-        if (canStart && !playingGame)
+        if (canStart && !PlayingGame)
         {
             canStart = false;
-            playingGame = true;
+            PlayingGame = true;
             songManager.CanStart = true;
         }
 
-        if (playingGame)
+        if (PlayingGame)
         {
             //Listen for pause button
             if (Input.GetKeyDown(pauseKey))
@@ -60,16 +63,31 @@ public class GameManager : MonoBehaviour
             if (songManager.SongEnded)
             {
                 Debug.Log("Song has ended");
-                playingGame = false;
+                PlayingGame = false;
                 songManager.SongEnded = false;
                 menuController.GameEndScreen();
             }
         }
     }
 
-    public void StartGame()
+    public void StartGame(MusicLibrary music)
     {
+        currentMusic = music;
+        songManager.SetAudioClip(currentMusic.audio);
+        songManager.SetFileLocation(currentMusic.fileLocation);
+        leaderboardController.SetLeaderboardID(currentMusic.leaderboardID);
         canStart = true;
+        menuController.StartSongFromMusicLibrary();
+    }
+
+    public void ReturnMusicLibrary()
+    {
+        PlayingGame = false;
+        songManager.audioSource.Stop();        
+        menuController.UnPauseGame();
+        menuController.OpenMusicSelection();
+        songManager.ExitSong();
+        scoreManager.ResetScores();
     }
 
     public void UpdatePauseMusic(bool isPaused)

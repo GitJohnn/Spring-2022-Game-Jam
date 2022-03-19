@@ -7,7 +7,7 @@ using TMPro;
 
 public class LeaderboardController : MonoBehaviour
 {
-    public int ID;
+    private int ID;
     int MaxScores = 12;
     public TextMeshProUGUI[] Entries;
 
@@ -89,5 +89,10 @@ public class LeaderboardController : MonoBehaviour
                 Debug.Log("Failed to upload score");
             }
         });        
+    }
+
+    public void SetLeaderboardID(int id)
+    {
+        ID = id;
     }
 }

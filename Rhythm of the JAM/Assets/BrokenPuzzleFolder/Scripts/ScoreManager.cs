@@ -19,7 +19,7 @@ public class ScoreManager : MonoBehaviour
         scoreText.text = "Score: 0";
         multiplierText.text = "Multiplier x1";
         comboText.text = "Combo Hits: 0";
-        leaderboard.ID = leaderboardID;
+        //leaderboard.ID = leaderboardID;
         leaderboard.StartSession();
     }
 
@@ -33,6 +33,12 @@ public class ScoreManager : MonoBehaviour
         leaderboard.SubmitScore(playerName.text, hitManager.CurrentScore);
         Debug.Log("Submit attempt " + playerName.text + " " + hitManager.CurrentScore);
         StartCoroutine(SwitchMenus());
+        hitManager.ResetScores();
+    }
+
+    public void ResetScores()
+    {
+        hitManager.ResetScores();
     }
 
     public void UpdateUI()

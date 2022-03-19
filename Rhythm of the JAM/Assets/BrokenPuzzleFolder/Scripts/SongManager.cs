@@ -20,7 +20,7 @@ public class SongManager : MonoBehaviour
     public bool CanStart { get; set; }
     public bool InProgress { get; set; }
     public bool SongEnded { get; set; }
-    public string fileLocation;
+    public string fileLocation { get; set; }
     public float noteTime;
     public float noteSpawnY;
     public float noteTapY;
@@ -34,7 +34,7 @@ public class SongManager : MonoBehaviour
 
     public static MidiFile midiFile;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Instance = this;
     }
@@ -107,11 +107,29 @@ public class SongManager : MonoBehaviour
 
     public void StartSong()
     {
+        audioSource.time = 0;
         audioSource.Play();
+    }
+
+    public void ExitSong()
+    {
+        foreach (var lane in lanes) lane.ClearTimeStamps();
+        SongEnded = false;
+        InProgress = false;
+    }
+
+    public void SetAudioClip(AudioClip audio)
+    {
+        audioSource.clip = audio;
+    }
+
+    public void SetFileLocation(string location)
+    {
+        fileLocation = location;
     }
 
     public static double GetAudioSourceTime()
     {
-        return (double)Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency;
+        return ((double)Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency);
     }
 }
