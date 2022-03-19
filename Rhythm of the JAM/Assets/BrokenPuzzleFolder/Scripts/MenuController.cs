@@ -14,20 +14,19 @@ public class MenuController : MonoBehaviour
     void Awake()
     {
         //clear selected gameobject
-        // EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(null);
         //set selected gameobject
-        // EventSystem.current.SetSelectedGameObject(gameStartButton);
+        EventSystem.current.SetSelectedGameObject(gameStartButton);
 
 
-        mainMenu.SetActive(false);
-        gameScoresPanel.SetActive(true);
+        mainMenu.SetActive(true);
+        gameScoresPanel.SetActive(false);
         PausePanel.SetActive(false);
         gameOptionsPanel.SetActive(false);
         mainMenuOptionsPanel.SetActive(false);
         gameScorePanel.SetActive(false);
         leaderboardPanel.SetActive(false);
-        // GameManager.instance.StartGame();
-        musicLibraryPanel.SetActive(true);
+        musicLibraryPanel.SetActive(false);
     }
 
     public void SinglePlayer()
@@ -63,7 +62,7 @@ public class MenuController : MonoBehaviour
         gameScoresPanel.SetActive(false);
         PausePanel.SetActive(false);
         gameOptionsPanel.SetActive(false);
-        mainMenuOptionsPanel.SetActive(false);
+        mainMenuOptionsPanel.SetActive(true);
         gameScorePanel.SetActive(false);
         leaderboardPanel.SetActive(false);
         musicLibraryPanel.SetActive(false);
