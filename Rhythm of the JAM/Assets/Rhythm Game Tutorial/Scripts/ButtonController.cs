@@ -6,14 +6,15 @@ public class ButtonController : MonoBehaviour
 {
 
     private SpriteRenderer theSR;
-    public Sprite defaultImage;
-    public Sprite pressedImage;
+    private Color defaultColor;
+    public Color pressedColor;
 
     public KeyCode KeyToPress;
 
     // Start is called before the first frame update
     void Start()
     {
+        defaultColor = Color.white;
         theSR = GetComponent<SpriteRenderer>();
     }
 
@@ -24,13 +25,13 @@ public class ButtonController : MonoBehaviour
         {
             if (!GameManager.instance.IsPaused && SongManager.Instance.InProgress)
             {
-                theSR.sprite = pressedImage;
+                theSR.color = pressedColor;
             }
         }
 
         if (Input.GetKeyUp(KeyToPress))
         {
-            theSR.sprite = defaultImage;
+            theSR.color = defaultColor;
         }
     }
 }

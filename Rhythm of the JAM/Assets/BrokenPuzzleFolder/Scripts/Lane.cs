@@ -13,7 +13,7 @@ public class Lane : MonoBehaviour
     public List<double> timeStamps = new List<double>();
 
     int spawnIndex = 0;
-    int inputIndex = 0;
+    //int inputIndex = 0;
 
     public void SetTimeStamps(Melanchall.DryWetMidi.Interaction.Note[] array)
     {
@@ -32,7 +32,7 @@ public class Lane : MonoBehaviour
         timeStamps.Clear();
         notes.Clear();
         spawnIndex = 0;
-        inputIndex = 0;
+        //inputIndex = 0;
     }
 
     // Update is called once per frame
@@ -44,7 +44,7 @@ public class Lane : MonoBehaviour
             {
                 var note = Instantiate(notePrefab, transform);
                 notes.Add(note.GetComponent<Note>());
-                note.GetComponent<Note>().assignedTime = (float)timeStamps[spawnIndex];
+                note.GetComponent<Note>().AssignedTime = (float)timeStamps[spawnIndex];
                 spawnIndex++;
             }
         }

@@ -6,14 +6,17 @@ public class Note : MonoBehaviour
 {        
     public GameObject HitEffect, GoodEffect, PerfectEffect, MissEffect;
     public KeyCode keyToPress;
-    public float assignedTime;
+    public float hitYPos, goodHitYPos;
+    public float AssignedTime { get; set; }
 
     private SpriteRenderer _renderer;
     private double timeInstantiated;
     private float noteDespawn;
     private bool canBePressed;
+    private float initialYPos;
     void Awake()
     {
+        initialYPos = transform.position.y;
         timeInstantiated = SongManager.GetAudioSourceTime();
         _renderer = GetComponent<SpriteRenderer>();
         noteDespawn = SongManager.Instance.noteDespawnY;
@@ -41,12 +44,12 @@ public class Note : MonoBehaviour
         {
             gameObject.SetActive(false);
 
-            if (Mathf.Abs(transform.position.y) > 0.25f)
+            if (Mathf.Abs(transform.position.y) > initialYPos + 0.25f)
             {
                 NoteHitsManager.instance.NormalHit();
                 Instantiate(HitEffect, transform.position, Quaternion.identity);
             }
-            else if (Mathf.Abs(transform.position.y) > 0.05f)
+            else if (Mathf.Abs(transform.position.y) > initialYPos + 0.05f)
             {
                 NoteHitsManager.instance.GoodHit();
                 Instantiate(GoodEffect, transform.position, Quaternion.identity);

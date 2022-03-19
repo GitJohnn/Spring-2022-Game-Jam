@@ -10,6 +10,7 @@ public class ScoreManager : MonoBehaviour
     public LeaderboardController leaderboard;
     [Space()]
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI endScoreText;
     public TextMeshProUGUI multiplierText;
     public TextMeshProUGUI comboText;
     public TMP_InputField playerName; 
@@ -17,6 +18,7 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         scoreText.text = "Score: 0";
+        endScoreText.text = "Score: XXXXXXX";
         multiplierText.text = "Multiplier x1";
         comboText.text = "Combo Hits: 0";
         //leaderboard.ID = leaderboardID;
@@ -44,6 +46,7 @@ public class ScoreManager : MonoBehaviour
     public void UpdateUI()
     {
         scoreText.text = "Score: " + hitManager.CurrentScore;
+        endScoreText.text = "Score: " + hitManager.CurrentScore;
         comboText.text = "Combo Hits: " + hitManager.ComboScore;
         multiplierText.text = "Multiplier x" + hitManager.CurrentMultiplier;
     }

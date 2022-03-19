@@ -8,11 +8,12 @@ using TMPro;
 public class LeaderboardController : MonoBehaviour
 {
     private int ID;
-    int MaxScores = 12;
+    public int MaxScores = 12;
     public TextMeshProUGUI[] Entries;
 
     private void Awake()
     {
+        MaxScores = Entries.Length;
         StartSession();
     }
 

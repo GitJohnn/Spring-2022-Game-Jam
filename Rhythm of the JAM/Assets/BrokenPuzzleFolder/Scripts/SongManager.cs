@@ -15,7 +15,7 @@ public class SongManager : MonoBehaviour
     public float songDelayInSeconds;
     public double marginOfError; // in seconds
 
-    public int inputDelayInMilliseconds;
+    //public int inputDelayInMilliseconds;
 
     public bool CanStart { get; set; }
     public bool InProgress { get; set; }

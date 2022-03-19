@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,8 +27,13 @@ public class MenuController : MonoBehaviour
         mainMenuOptionsPanel.SetActive(false);
         gameScorePanel.SetActive(false);
         leaderboardPanel.SetActive(false);
-        musicLibraryPanel.SetActive(false);
+        musicLibraryPanel.SetActive(false);        
     }
+
+    //private void Start()
+    //{
+    //    FadeController.instance.FadeOut();
+    //}
 
     public void SinglePlayer()
     {
@@ -44,11 +50,6 @@ public class MenuController : MonoBehaviour
         gameScorePanel.SetActive(false);
         leaderboardPanel.SetActive(false);
         musicLibraryPanel.SetActive(true);
-    }
-
-    public void Multiplayer()
-    {
-
     }
 
     public void MainMenuOptions()
@@ -219,6 +220,17 @@ public class MenuController : MonoBehaviour
     public void QuitButton()
     {
         Application.Quit();
+    }
+
+    public IEnumerator SwitchPanel(Action method)
+    {
+        yield return new WaitUntil(() => !FadeController.instance.IsFadeIn);
+
+        method();
+
+        yield return new WaitUntil(() => !FadeController.instance.IsFadeIn);
+
+        yield return true;
     }
 
 }
