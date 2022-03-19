@@ -101,7 +101,8 @@ MonoBehaviour:
   PerfectEffect: {fileID: 8882548024646120100, guid: 3f17763886f1f03489e7895622c9b98f, type: 3}
   MissEffect: {fileID: 3238208580411403090, guid: 4875f97c0b004a24d8c2d4710d4c3261, type: 3}
   keyToPress: 276
-  assignedTime: 0
+  hitYPos: 0
+  goodHitYPos: 0
 --- !u!58 &2117468727
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -117,4 +118,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.25

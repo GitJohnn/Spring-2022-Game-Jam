@@ -42,7 +42,7 @@ public class LeaderboardController : MonoBehaviour
                 LootLocker.Requests.LootLockerLeaderboardMember[] scores = response.items;
                 for(int i = 0; i < scores.Length; i++)
                 {
-                    Entries[i].text = (scores[i].rank + ". " + scores[i].member_id + ": " + scores[i].score);
+                    Entries[i].text = (scores[i].rank + "." + scores[i].member_id.Substring(0,4) + ": " + scores[i].score);
                 }
 
                 if(scores.Length < MaxScores)

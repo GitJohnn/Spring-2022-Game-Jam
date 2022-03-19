@@ -4,48 +4,33 @@ using UnityEngine;
 
 public class FadeController : MonoBehaviour
 {
-    public static FadeController instance;
-
-
-    private Animator animator;    
-    public bool IsFadeIn { get; set; }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        instance = this;
-        animator = GetComponent<Animator>();
-        FadeIn();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            if (IsFadeIn)
-            {
-                FadeOut();                
-            }
-            else
-            {
-                FadeIn();
-                
-            }            
-        }
-    }
+    public Animator animator;
+    public bool IsFadeIn { get; set; } = false;
 
     public void FadeIn()
     {
         animator.SetBool("FadeIn", true);
         animator.SetBool("FadeOut", false);
-        IsFadeIn = true;
+        //IsFadeIn = true;
     }
 
     public void FadeOut()
     {
         animator.SetBool("FadeIn", false);
         animator.SetBool("FadeOut", true);
+        //IsFadeIn = false;
+    }
+
+    public void FadeInEnd()
+    {
+        IsFadeIn = true;
+        Debug.Log("Fade in ended");
+    }
+
+    public void FadeOutEnd()
+    {
         IsFadeIn = false;
+        Debug.Log("Fade out ended");
     }
 
 }

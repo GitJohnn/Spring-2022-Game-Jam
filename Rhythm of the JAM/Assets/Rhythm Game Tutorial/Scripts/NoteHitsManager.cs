@@ -11,7 +11,7 @@ public class NoteHitsManager : MonoBehaviour
 
     private int currentMultiplier;
     private int comboScore = 0;
-    private int highestComboScore = 0;
+    //private int highestComboScore = 0;
     private int multiplierTracker = 0;
     public int[] multiplierThresholds;
     private int multiplierThresholdsIndex = 0;
@@ -72,10 +72,10 @@ public class NoteHitsManager : MonoBehaviour
 
     public void NoteMissed()
     {
-        if (comboScore > highestComboScore)
-        {
-            highestComboScore = comboScore;
-        }
+        //if (comboScore > highestComboScore)
+        //{
+        //    highestComboScore = comboScore;
+        //}
         comboScore = 0;
         multiplierTracker = 0;
         currentMultiplier = 1;

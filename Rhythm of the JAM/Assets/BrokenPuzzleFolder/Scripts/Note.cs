@@ -14,6 +14,7 @@ public class Note : MonoBehaviour
     private float noteDespawn;
     private bool canBePressed;
     private float initialYPos;
+    private bool isMissed;
     void Awake()
     {
         initialYPos = transform.position.y;

@@ -16,9 +16,9 @@ public class SongSelected : MonoBehaviour
         textObj.text = MusicObject.songName;
         button = GetComponent<Button>();
         button.onClick.AddListener(StartSong);
-        buttonNav = button.navigation;
-        buttonNav.mode = Navigation.Mode.Vertical;
-        button.navigation = buttonNav;
+        //buttonNav = button.navigation;
+        //buttonNav.mode = Navigation.Mode.Vertical;
+        //button.navigation = buttonNav;
     }
 
     public void StartSong()

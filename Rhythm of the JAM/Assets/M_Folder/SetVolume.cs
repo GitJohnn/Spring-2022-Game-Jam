@@ -23,4 +23,11 @@ public class SetVolume : MonoBehaviour
             slider.value = sliderValue;
         }
     }
+
+    public float GetVolume()
+    {
+        float volume;
+        mixer.GetFloat("MusicVol", out volume);
+        return volume;
+    }
 }

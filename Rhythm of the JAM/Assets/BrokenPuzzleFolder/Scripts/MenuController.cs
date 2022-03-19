@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public class MenuController : MonoBehaviour
 {
+    public FadeController fadePanel;
+
     public GameObject mainMenu, gameScoresPanel, PausePanel, gameOptionsPanel, mainMenuOptionsPanel, gameScorePanel, leaderboardPanel, musicLibraryPanel;
 
     public GameObject gameStartButton, pauseFirstButton, optionsGameFirstButton, optionsMainMenuFirstButton, gamescoreFirstButton, leaderboardFirstButton, musicLibraryFirstButton;
@@ -13,207 +15,289 @@ public class MenuController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        //clear selected gameobject
-        EventSystem.current.SetSelectedGameObject(null);
-        //set selected gameobject
-        EventSystem.current.SetSelectedGameObject(gameStartButton);
+        fadePanel.FadeOut();
+
+        SwitchMenu(gameStartButton,new bool[] { false, false, true, false, false, false, false, false });
+        ////clear selected gameobject
+        //EventSystem.current.SetSelectedGameObject(null);
+        ////set selected gameobject
+        //EventSystem.current.SetSelectedGameObject(gameStartButton);
 
 
-        mainMenu.SetActive(true);
-        gameScoresPanel.SetActive(false);
-        PausePanel.SetActive(false);
-        gameOptionsPanel.SetActive(false);
-        mainMenuOptionsPanel.SetActive(false);
-        gameScorePanel.SetActive(false);
-        leaderboardPanel.SetActive(false);
-        musicLibraryPanel.SetActive(false);
+        //PausePanel.SetActive(false);
+        //gameScoresPanel.SetActive(false);
+        //mainMenu.SetActive(true);
+        //gameOptionsPanel.SetActive(false);
+        //mainMenuOptionsPanel.SetActive(false);
+        //gameScorePanel.SetActive(false);
+        //leaderboardPanel.SetActive(false);
+        //musicLibraryPanel.SetActive(false);
     }
 
     public void SinglePlayer()
     {
-        //clear selected gameobject
-        EventSystem.current.SetSelectedGameObject(null);
-        //set selected gameobject
-        EventSystem.current.SetSelectedGameObject(musicLibraryFirstButton);
+        StartCoroutine(SwitchMenuCoroutine(musicLibraryFirstButton, new bool[] { false, true, false, false, false, false, false, true }));
 
-        mainMenu.SetActive(false);
-        gameScoresPanel.SetActive(true);
-        PausePanel.SetActive(false);
-        gameOptionsPanel.SetActive(false);
-        mainMenuOptionsPanel.SetActive(false);
-        gameScorePanel.SetActive(false);
-        leaderboardPanel.SetActive(false);
-        musicLibraryPanel.SetActive(true);
+        //SwitchMenu(musicLibraryFirstButton, new bool[] { false, true, false, false, false, false, false, true });
+
+        ////clear selected gameobject
+        //EventSystem.current.SetSelectedGameObject(null);
+        ////set selected gameobject
+        //EventSystem.current.SetSelectedGameObject(musicLibraryFirstButton);
+
+        //PausePanel.SetActive(false);
+        //gameScoresPanel.SetActive(true);
+        //mainMenu.SetActive(false);
+        //gameOptionsPanel.SetActive(false);
+        //mainMenuOptionsPanel.SetActive(false);
+        //gameScorePanel.SetActive(false);
+        //leaderboardPanel.SetActive(false);
+        //musicLibraryPanel.SetActive(true);
     }
 
     public void MainMenuOptions()
     {
-        //clear selected gameobject
-        EventSystem.current.SetSelectedGameObject(null);
-        //set selected gameobject
-        EventSystem.current.SetSelectedGameObject(optionsMainMenuFirstButton);
+        SwitchMenu(optionsMainMenuFirstButton, new bool[] { false, false, true, false, true, false, false, false });
 
-        mainMenu.SetActive(true);
-        gameScoresPanel.SetActive(false);
-        PausePanel.SetActive(false);
-        gameOptionsPanel.SetActive(false);
-        mainMenuOptionsPanel.SetActive(true);
-        gameScorePanel.SetActive(false);
-        leaderboardPanel.SetActive(false);
-        musicLibraryPanel.SetActive(false);
+        ////clear selected gameobject
+        //EventSystem.current.SetSelectedGameObject(null);
+        ////set selected gameobject
+        //EventSystem.current.SetSelectedGameObject(optionsMainMenuFirstButton);
+
+        //PausePanel.SetActive(false);
+        //gameScoresPanel.SetActive(false);
+        //mainMenu.SetActive(true);
+        //gameOptionsPanel.SetActive(false);
+        //mainMenuOptionsPanel.SetActive(true);
+        //gameScorePanel.SetActive(false);
+        //leaderboardPanel.SetActive(false);
+        //musicLibraryPanel.SetActive(false);
     }
 
     public void GameOptions()
     {
-        //clear selected gameobject
-        EventSystem.current.SetSelectedGameObject(null);
-        //set selected gameobject
-        EventSystem.current.SetSelectedGameObject(optionsGameFirstButton);
+        SwitchMenu(optionsGameFirstButton, new bool[] { true, true, false, true, false, false, false, false });
 
-        mainMenu.SetActive(false);
-        gameScoresPanel.SetActive(true);
-        PausePanel.SetActive(true);
-        gameOptionsPanel.SetActive(true);
-        mainMenuOptionsPanel.SetActive(false);
-        gameScorePanel.SetActive(false);
-        leaderboardPanel.SetActive(false);
-        musicLibraryPanel.SetActive(false);
+        ////clear selected gameobject
+        //EventSystem.current.SetSelectedGameObject(null);
+        ////set selected gameobject
+        //EventSystem.current.SetSelectedGameObject(optionsGameFirstButton);
+
+        //PausePanel.SetActive(true);
+        //gameScoresPanel.SetActive(true);
+        //mainMenu.SetActive(false);
+        //gameOptionsPanel.SetActive(true);
+        //mainMenuOptionsPanel.SetActive(false);
+        //gameScorePanel.SetActive(false);
+        //leaderboardPanel.SetActive(false);
+        //musicLibraryPanel.SetActive(false);
     }
 
     public void MainMenuReturnOptions()
     {
-        //clear selected gameobject
-        EventSystem.current.SetSelectedGameObject(null);
-        //set selected gameobject
-        EventSystem.current.SetSelectedGameObject(gameStartButton);
+        SwitchMenu(gameStartButton, new bool[] { false, false, true, false, false, false, false, false });
 
-        mainMenu.SetActive(true);
-        gameScoresPanel.SetActive(false);
-        PausePanel.SetActive(false);
-        gameOptionsPanel.SetActive(false);
-        mainMenuOptionsPanel.SetActive(false);
-        gameScorePanel.SetActive(false);
-        leaderboardPanel.SetActive(false);
-        musicLibraryPanel.SetActive(false);
+        ////clear selected gameobject
+        //EventSystem.current.SetSelectedGameObject(null);
+        ////set selected gameobject
+        //EventSystem.current.SetSelectedGameObject(gameStartButton);
+
+        //PausePanel.SetActive(false);
+        //gameScoresPanel.SetActive(false);
+        //mainMenu.SetActive(true);
+        //gameOptionsPanel.SetActive(false);
+        //mainMenuOptionsPanel.SetActive(false);
+        //gameScorePanel.SetActive(false);
+        //leaderboardPanel.SetActive(false);
+        //musicLibraryPanel.SetActive(false);
     }
 
     public void GameReturnOptions()
     {
-        //clear selected gameobject
-        EventSystem.current.SetSelectedGameObject(null);
-        //set selected gameobject
-        EventSystem.current.SetSelectedGameObject(pauseFirstButton);
+        SwitchMenu(pauseFirstButton, new bool[] { true, true, false, false, false, false, false, false });
 
-        mainMenu.SetActive(false);
-        gameScoresPanel.SetActive(true);
-        PausePanel.SetActive(true);
-        gameOptionsPanel.SetActive(false);
-        mainMenuOptionsPanel.SetActive(false);
-        gameScorePanel.SetActive(false);
-        leaderboardPanel.SetActive(false);
-        musicLibraryPanel.SetActive(false);
+        ////clear selected gameobject
+        //EventSystem.current.SetSelectedGameObject(null);
+        ////set selected gameobject
+        //EventSystem.current.SetSelectedGameObject(pauseFirstButton);
+
+        //PausePanel.SetActive(true);
+        //gameScoresPanel.SetActive(true);
+        //mainMenu.SetActive(false);             
+        //gameOptionsPanel.SetActive(false);
+        //mainMenuOptionsPanel.SetActive(false);
+        //gameScorePanel.SetActive(false);
+        //leaderboardPanel.SetActive(false);
+        //musicLibraryPanel.SetActive(false);
     }
 
     public void PauseGame()
     {
-        //clear selected gameobject
-        EventSystem.current.SetSelectedGameObject(null);
-        //set selected gameobject
-        EventSystem.current.SetSelectedGameObject(pauseFirstButton);
+        SwitchMenu(pauseFirstButton, new bool[] { true, true, false, false, false, false, false, false });
 
+        ////clear selected gameobject
+        //EventSystem.current.SetSelectedGameObject(null);
+        ////set selected gameobject
+        //EventSystem.current.SetSelectedGameObject(pauseFirstButton);
 
-        PausePanel.SetActive(true);
-        gameScoresPanel.SetActive(true);
-        mainMenu.SetActive(false);
-        gameOptionsPanel.SetActive(false);
-        mainMenuOptionsPanel.SetActive(false);
-        gameScorePanel.SetActive(false);
-        leaderboardPanel.SetActive(false);
-        musicLibraryPanel.SetActive(false);
+        //PausePanel.SetActive(true);
+        //gameScoresPanel.SetActive(true);
+        //mainMenu.SetActive(false);
+        //gameOptionsPanel.SetActive(false);
+        //mainMenuOptionsPanel.SetActive(false);
+        //gameScorePanel.SetActive(false);
+        //leaderboardPanel.SetActive(false);
+        //musicLibraryPanel.SetActive(false);
         GameManager.instance.UpdatePauseMusic(true);
         Time.timeScale = 0;
     }
 
     public void UnPauseGame()
     {
-        PausePanel.SetActive(false);
-        gameScoresPanel.SetActive(true);
-        mainMenu.SetActive(false);
-        gameOptionsPanel.SetActive(false);
-        mainMenuOptionsPanel.SetActive(false);
-        gameScorePanel.SetActive(false);
-        leaderboardPanel.SetActive(false);
-        musicLibraryPanel.SetActive(false);
+        SwitchMenu(null, new bool[] { false, true, false, false, false, false, false, false });
+
+        //PausePanel.SetActive(false);
+        //gameScoresPanel.SetActive(true);
+        //mainMenu.SetActive(false);
+        //gameOptionsPanel.SetActive(false);
+        //mainMenuOptionsPanel.SetActive(false);
+        //gameScorePanel.SetActive(false);
+        //leaderboardPanel.SetActive(false);
+        //musicLibraryPanel.SetActive(false);
         GameManager.instance.UpdatePauseMusic(false);
         Time.timeScale = 1;
     }
 
     public void GameEndScreen()
     {
-        //clear selected gameobject
-        EventSystem.current.SetSelectedGameObject(null);
-        //set selected gameobject
-        EventSystem.current.SetSelectedGameObject(gamescoreFirstButton);
+        SwitchMenu(gamescoreFirstButton, new bool[] { false, true, false, false, false, true, false, false });
 
-        PausePanel.SetActive(false);
-        gameScoresPanel.SetActive(true);
-        mainMenu.SetActive(false);
-        gameOptionsPanel.SetActive(false);
-        mainMenuOptionsPanel.SetActive(false);
-        gameScorePanel.SetActive(true);
-        leaderboardPanel.SetActive(false);
-        musicLibraryPanel.SetActive(false);
+        ////clear selected gameobject
+        //EventSystem.current.SetSelectedGameObject(null);
+        ////set selected gameobject
+        //EventSystem.current.SetSelectedGameObject(gamescoreFirstButton);
+
+        //PausePanel.SetActive(false);
+        //gameScoresPanel.SetActive(true);
+        //mainMenu.SetActive(false);
+        //gameOptionsPanel.SetActive(false);
+        //mainMenuOptionsPanel.SetActive(false);
+        //gameScorePanel.SetActive(true);
+        //leaderboardPanel.SetActive(false);
+        //musicLibraryPanel.SetActive(false);
     }
 
     public void LeaderboardScreen()
     {
-        //clear selected gameobject
-        EventSystem.current.SetSelectedGameObject(null);
-        //set selected gameobject
-        EventSystem.current.SetSelectedGameObject(leaderboardFirstButton);
+        SwitchMenu(leaderboardFirstButton, new bool[] { false, true, false, false, false, false, true, false });
 
-        PausePanel.SetActive(false);
-        gameScoresPanel.SetActive(true);
-        mainMenu.SetActive(false);
-        gameOptionsPanel.SetActive(false);
-        mainMenuOptionsPanel.SetActive(false);
-        gameScorePanel.SetActive(false);
-        leaderboardPanel.SetActive(true);
-        musicLibraryPanel.SetActive(false);
+        ////clear selected gameobject
+        //EventSystem.current.SetSelectedGameObject(null);
+        ////set selected gameobject
+        //EventSystem.current.SetSelectedGameObject(leaderboardFirstButton);
+
+        //PausePanel.SetActive(false);
+        //gameScoresPanel.SetActive(true);
+        //mainMenu.SetActive(false);
+        //gameOptionsPanel.SetActive(false);
+        //mainMenuOptionsPanel.SetActive(false);
+        //gameScorePanel.SetActive(false);
+        //leaderboardPanel.SetActive(true);
+        //musicLibraryPanel.SetActive(false);
     }
 
     public void StartSongFromMusicLibrary()
     {
-        PausePanel.SetActive(false);
-        gameScoresPanel.SetActive(true);
-        mainMenu.SetActive(false);
-        gameOptionsPanel.SetActive(false);
-        mainMenuOptionsPanel.SetActive(false);
-        gameScorePanel.SetActive(false);
-        leaderboardPanel.SetActive(false);
-        musicLibraryPanel.SetActive(false);
+        //StartCoroutine(null, new bool[] { false, true, false, false, false, false, false, false });
+
+        SwitchMenu(null, new bool[] { false, true, false, false, false, false, false, false });
+
+        //PausePanel.SetActive(false);
+        //gameScoresPanel.SetActive(true);
+        //mainMenu.SetActive(false);
+        //gameOptionsPanel.SetActive(false);
+        //mainMenuOptionsPanel.SetActive(false);
+        //gameScorePanel.SetActive(false);
+        //leaderboardPanel.SetActive(false);
+        //musicLibraryPanel.SetActive(false);
     }
 
     public void OpenMusicSelection()
     {
-        //clear selected gameobject
-        EventSystem.current.SetSelectedGameObject(null);
-        //set selected gameobject
-        EventSystem.current.SetSelectedGameObject(musicLibraryFirstButton);
+        SwitchMenu(musicLibraryFirstButton, new bool[] { false, false, false, false, false, false, false, true });
 
-        PausePanel.SetActive(false);
-        gameScoresPanel.SetActive(false);
-        mainMenu.SetActive(false);
-        gameOptionsPanel.SetActive(false);
-        mainMenuOptionsPanel.SetActive(false);
-        gameScorePanel.SetActive(false);
-        leaderboardPanel.SetActive(false);
-        musicLibraryPanel.SetActive(true);
+        ////clear selected gameobject
+        //EventSystem.current.SetSelectedGameObject(null);
+        ////set selected gameobject
+        //EventSystem.current.SetSelectedGameObject(musicLibraryFirstButton);
+
+        //PausePanel.SetActive(false);
+        //gameScoresPanel.SetActive(false);
+        //mainMenu.SetActive(false);
+        //gameOptionsPanel.SetActive(false);
+        //mainMenuOptionsPanel.SetActive(false);
+        //gameScorePanel.SetActive(false);
+        //leaderboardPanel.SetActive(false);
+        //musicLibraryPanel.SetActive(true);
     }
 
     public void QuitButton()
     {
         Application.Quit();
+    }
+
+    private void SwitchMenu(GameObject selectedObj, bool[] menuSettings)
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        //set selected gameobject
+        EventSystem.current.SetSelectedGameObject(selectedObj);
+
+        PausePanel.SetActive(menuSettings[0]);
+        gameScoresPanel.SetActive(menuSettings[1]);
+        mainMenu.SetActive(menuSettings[2]);
+        gameOptionsPanel.SetActive(menuSettings[3]);
+        mainMenuOptionsPanel.SetActive(menuSettings[4]);
+        gameScorePanel.SetActive(menuSettings[5]);
+        leaderboardPanel.SetActive(menuSettings[6]);
+        musicLibraryPanel.SetActive(menuSettings[7]);
+    }
+
+    private IEnumerator SwitchMenuCoroutine(GameObject selectedObj, bool[] menuSettings)
+    {        
+        fadePanel.FadeIn();
+        Debug.Log("Fade In started");
+        yield return new WaitUntil(() => fadePanel.IsFadeIn);
+
+        Debug.Log("Fade in done");
+
+        SwitchMenu(selectedObj, menuSettings);
+
+        fadePanel.FadeOut();
+
+        yield return new WaitUntil(() => !fadePanel.IsFadeIn);
+
+        Debug.Log("Fade out done");
+
+    }
+
+    private IEnumerator SwitchMenuCoroutine(GameObject selectedObj, bool[] menuSettings, float fadeOutDelay)
+    {
+        fadePanel.FadeIn();
+        Debug.Log("Fade In started");
+        yield return new WaitUntil(() => fadePanel.IsFadeIn);
+
+        Debug.Log("Fade in done");
+
+        SwitchMenu(selectedObj, menuSettings);
+
+        yield return new WaitForSeconds(fadeOutDelay);
+
+        fadePanel.FadeOut();
+
+        yield return new WaitUntil(() => !fadePanel.IsFadeIn);
+
+        Debug.Log("Fade out done");
+
     }
 
 }
