@@ -47,11 +47,6 @@ public class MenuController : MonoBehaviour
         musicLibraryPanel.SetActive(true);
     }
 
-    public void Multiplayer()
-    {
-
-    }
-
     public void MainMenuOptions()
     {
         //clear selected gameobject
