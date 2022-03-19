@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,25 +14,21 @@ public class MenuController : MonoBehaviour
     void Awake()
     {
         //clear selected gameobject
-        EventSystem.current.SetSelectedGameObject(null);
+        // EventSystem.current.SetSelectedGameObject(null);
         //set selected gameobject
-        EventSystem.current.SetSelectedGameObject(gameStartButton);
+        // EventSystem.current.SetSelectedGameObject(gameStartButton);
 
 
-        mainMenu.SetActive(true);
-        gameScoresPanel.SetActive(false);
+        mainMenu.SetActive(false);
+        gameScoresPanel.SetActive(true);
         PausePanel.SetActive(false);
         gameOptionsPanel.SetActive(false);
         mainMenuOptionsPanel.SetActive(false);
         gameScorePanel.SetActive(false);
         leaderboardPanel.SetActive(false);
-        musicLibraryPanel.SetActive(false);        
+        // GameManager.instance.StartGame();
+        musicLibraryPanel.SetActive(true);
     }
-
-    //private void Start()
-    //{
-    //    FadeController.instance.FadeOut();
-    //}
 
     public void SinglePlayer()
     {
@@ -52,6 +47,11 @@ public class MenuController : MonoBehaviour
         musicLibraryPanel.SetActive(true);
     }
 
+    public void Multiplayer()
+    {
+
+    }
+
     public void MainMenuOptions()
     {
         //clear selected gameobject
@@ -63,7 +63,7 @@ public class MenuController : MonoBehaviour
         gameScoresPanel.SetActive(false);
         PausePanel.SetActive(false);
         gameOptionsPanel.SetActive(false);
-        mainMenuOptionsPanel.SetActive(true);
+        mainMenuOptionsPanel.SetActive(false);
         gameScorePanel.SetActive(false);
         leaderboardPanel.SetActive(false);
         musicLibraryPanel.SetActive(false);
@@ -220,17 +220,6 @@ public class MenuController : MonoBehaviour
     public void QuitButton()
     {
         Application.Quit();
-    }
-
-    public IEnumerator SwitchPanel(Action method)
-    {
-        yield return new WaitUntil(() => !FadeController.instance.IsFadeIn);
-
-        method();
-
-        yield return new WaitUntil(() => !FadeController.instance.IsFadeIn);
-
-        yield return true;
     }
 
 }
