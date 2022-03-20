@@ -8,30 +8,40 @@ public class MenuController : MonoBehaviour
 {
     public FadeController fadePanel;
 
+    public GameObject mouseWarningPanel;
+    public GameObject mouseWarningEnterButton;
+
     public GameObject mainMenu, gameScoresPanel, PausePanel, gameOptionsPanel, mainMenuOptionsPanel, gameScorePanel, leaderboardPanel, musicLibraryPanel;
 
     public GameObject gameStartButton, pauseFirstButton, optionsGameFirstButton, optionsMainMenuFirstButton, gamescoreFirstButton, leaderboardFirstButton, musicLibraryFirstButton;
-    
+
+    private GameObject currentSelectedObj;
+
     // Start is called before the first frame update
     void Awake()
     {
+        fadePanel.gameObject.SetActive(true);
         fadePanel.FadeOut();
 
         SwitchMenu(gameStartButton,new bool[] { false, false, true, false, false, false, false, false });
-        ////clear selected gameobject
-        //EventSystem.current.SetSelectedGameObject(null);
-        ////set selected gameobject
-        //EventSystem.current.SetSelectedGameObject(gameStartButton);
+
+        mouseWarningPanel.SetActive(true);
+        
+        EventSystem.current.SetSelectedGameObject(null);
+        //set selected gameobject
+        EventSystem.current.SetSelectedGameObject(mouseWarningEnterButton);
 
 
-        //PausePanel.SetActive(false);
-        //gameScoresPanel.SetActive(false);
-        //mainMenu.SetActive(true);
-        //gameOptionsPanel.SetActive(false);
-        //mainMenuOptionsPanel.SetActive(false);
-        //gameScorePanel.SetActive(false);
-        //leaderboardPanel.SetActive(false);
-        //musicLibraryPanel.SetActive(false);
+        //prevent mouse clicks inside the game to remove event system objects
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+    }
+
+    public void MouseWarning()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        //set selected gameobject
+        EventSystem.current.SetSelectedGameObject(gameStartButton);
     }
 
     public void SinglePlayer()
@@ -250,7 +260,8 @@ public class MenuController : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(null);
         //set selected gameobject
-        EventSystem.current.SetSelectedGameObject(selectedObj);
+        if(selectedObj)
+            EventSystem.current.SetSelectedGameObject(selectedObj);
 
         PausePanel.SetActive(menuSettings[0]);
         gameScoresPanel.SetActive(menuSettings[1]);
@@ -265,39 +276,20 @@ public class MenuController : MonoBehaviour
     private IEnumerator SwitchMenuCoroutine(GameObject selectedObj, bool[] menuSettings)
     {        
         fadePanel.FadeIn();
-        Debug.Log("Fade In started");
         yield return new WaitUntil(() => fadePanel.IsFadeIn);
-
-        Debug.Log("Fade in done");
-
         SwitchMenu(selectedObj, menuSettings);
-
         fadePanel.FadeOut();
-
         yield return new WaitUntil(() => !fadePanel.IsFadeIn);
-
-        Debug.Log("Fade out done");
-
     }
 
     private IEnumerator SwitchMenuCoroutine(GameObject selectedObj, bool[] menuSettings, float fadeOutDelay)
     {
         fadePanel.FadeIn();
-        Debug.Log("Fade In started");
         yield return new WaitUntil(() => fadePanel.IsFadeIn);
-
-        Debug.Log("Fade in done");
-
         SwitchMenu(selectedObj, menuSettings);
-
         yield return new WaitForSeconds(fadeOutDelay);
-
         fadePanel.FadeOut();
-
         yield return new WaitUntil(() => !fadePanel.IsFadeIn);
-
-        Debug.Log("Fade out done");
-
     }
 
 }

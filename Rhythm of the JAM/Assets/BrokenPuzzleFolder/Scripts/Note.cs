@@ -14,7 +14,6 @@ public class Note : MonoBehaviour
     private float noteDespawn;
     private bool canBePressed;
     private float initialYPos;
-    private bool isMissed;
     void Awake()
     {
         initialYPos = transform.position.y;
@@ -63,11 +62,6 @@ public class Note : MonoBehaviour
         }
     }
 
-    //public void DisableNote()
-    //{       
-
-    //}
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag.Equals("Activator"))
@@ -83,6 +77,7 @@ public class Note : MonoBehaviour
             canBePressed = false;
             NoteHitsManager.instance.NoteMissed();
             Instantiate(MissEffect, transform.position, Quaternion.identity);
+            //gameObject.SetActive(false);
         }
     }
 

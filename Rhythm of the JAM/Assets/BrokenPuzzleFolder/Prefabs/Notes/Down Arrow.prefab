@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2097531541786822499}
   - component: {fileID: -1176542040602334193}
   - component: {fileID: -4337646126267928669}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Down Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,8 +101,8 @@ MonoBehaviour:
   PerfectEffect: {fileID: 8882548024646120100, guid: 3f17763886f1f03489e7895622c9b98f, type: 3}
   MissEffect: {fileID: 3238208580411403090, guid: 4875f97c0b004a24d8c2d4710d4c3261, type: 3}
   keyToPress: 274
-  hitYPos: 0
-  goodHitYPos: 0
+  hitYPos: 0.25
+  goodHitYPos: 0.05
 --- !u!58 &-4337646126267928669
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -118,4 +118,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.1

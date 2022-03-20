@@ -6,21 +6,21 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
     public NoteHitsManager hitManager;
-    public int leaderboardID;
     public LeaderboardController leaderboard;
     [Space()]
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI endScoreText;
     public TextMeshProUGUI multiplierText;
     public TextMeshProUGUI comboText;
-    public TMP_InputField playerName; 
+    public TMP_InputField playerName;
+    public LeanTweenType easeType;
 
     void Start()
     {
         scoreText.text = "Score: 0";
         endScoreText.text = "Score: XXXXXXX";
-        multiplierText.text = "Multiplier x1";
-        comboText.text = "Combo Hits: 0";
+        multiplierText.text = "x1";
+        comboText.text = "0";
         //leaderboard.ID = leaderboardID;
         leaderboard.StartSession();
     }
@@ -47,8 +47,11 @@ public class ScoreManager : MonoBehaviour
     {
         scoreText.text = "Score: " + hitManager.CurrentScore;
         endScoreText.text = "Score: " + hitManager.CurrentScore;
-        comboText.text = "Combo Hits: " + hitManager.ComboScore;
-        multiplierText.text = "Multiplier x" + hitManager.CurrentMultiplier;
+        comboText.text = hitManager.ComboScore.ToString();
+        LeanTween.scale(comboText.gameObject, new Vector2(1, 1) * 1.5f, 0.1f).setEase(easeType).setOnComplete(() => {
+            LeanTween.scale(comboText.gameObject, new Vector2(1, 1), 0.1f).setEase(easeType);
+        });
+        multiplierText.text = "x" + hitManager.CurrentMultiplier.ToString();
     }
 
     IEnumerator SwitchMenus()
