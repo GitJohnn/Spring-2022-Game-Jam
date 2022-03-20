@@ -74,10 +74,10 @@ public class Note : MonoBehaviour
     {
         if (other.tag.Equals("Activator") && this.gameObject.activeInHierarchy)
         {
+            Debug.Log(gameObject.name);
             canBePressed = false;
             NoteHitsManager.instance.NoteMissed();
             Instantiate(MissEffect, transform.position, Quaternion.identity);
-            //gameObject.SetActive(false);
         }
     }
 

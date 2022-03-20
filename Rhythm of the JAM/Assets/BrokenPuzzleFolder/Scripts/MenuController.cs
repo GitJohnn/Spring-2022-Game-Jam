@@ -30,11 +30,11 @@ public class MenuController : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         //set selected gameobject
         EventSystem.current.SetSelectedGameObject(mouseWarningEnterButton);
+    }
 
+    private void Update()
+    {
 
-        //prevent mouse clicks inside the game to remove event system objects
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
     }
 
     public void MouseWarning()
@@ -260,7 +260,7 @@ public class MenuController : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(null);
         //set selected gameobject
-        if(selectedObj)
+        if(selectedObj != null)
             EventSystem.current.SetSelectedGameObject(selectedObj);
 
         PausePanel.SetActive(menuSettings[0]);
@@ -274,22 +274,28 @@ public class MenuController : MonoBehaviour
     }
 
     private IEnumerator SwitchMenuCoroutine(GameObject selectedObj, bool[] menuSettings)
-    {        
+    {
+        fadePanel.gameObject.SetActive(true);
         fadePanel.FadeIn();
         yield return new WaitUntil(() => fadePanel.IsFadeIn);
         SwitchMenu(selectedObj, menuSettings);
-        fadePanel.FadeOut();
+        fadePanel.FadeOut();        
         yield return new WaitUntil(() => !fadePanel.IsFadeIn);
+        fadePanel.gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.1f);
     }
 
     private IEnumerator SwitchMenuCoroutine(GameObject selectedObj, bool[] menuSettings, float fadeOutDelay)
     {
+        fadePanel.gameObject.SetActive(true);
         fadePanel.FadeIn();
         yield return new WaitUntil(() => fadePanel.IsFadeIn);
         SwitchMenu(selectedObj, menuSettings);
         yield return new WaitForSeconds(fadeOutDelay);
         fadePanel.FadeOut();
         yield return new WaitUntil(() => !fadePanel.IsFadeIn);
+        fadePanel.gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.1f);
     }
 
 }

@@ -12,10 +12,6 @@ public class GameManager : MonoBehaviour
     public MenuController menuController;
     public LeaderboardController leaderboardController;
     [Space()]
-    public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI multiplierText;
-    public TextMeshProUGUI comboText;
-    [Space()]
     public KeyCode pauseKey;
 
     private MusicLibrary currentMusic;
@@ -27,11 +23,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
-
-        scoreText.text = "Score: 0";
-        multiplierText.text = "Multiplier x1";
-        comboText.text = "Combo Hits: 0";        
+        instance = this;       
     }
 
     // Update is called once per frame
