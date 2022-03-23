@@ -8,7 +8,8 @@ using TMPro;
 public class LeaderboardController : MonoBehaviour
 {
     private int ID;
-    public int MaxScores = 12;
+    private int MaxScores = 10;
+    public int leaderboardID = 1893; 
     public TextMeshProUGUI[] Entries;
 
     private void Awake()
@@ -33,7 +34,7 @@ public class LeaderboardController : MonoBehaviour
     }
 
 
-    public bool ShowScores()
+    public void ShowScores()
     {
         LootLockerSDKManager.GetScoreList(ID, MaxScores, (response) =>
         {
@@ -58,8 +59,6 @@ public class LeaderboardController : MonoBehaviour
                 Debug.Log("Failed to get scores");
             }
         });
-
-        return true;
     }
 
     public void SubmitScore()

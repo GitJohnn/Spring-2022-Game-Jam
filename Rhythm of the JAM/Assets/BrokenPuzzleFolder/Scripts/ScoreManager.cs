@@ -41,6 +41,7 @@ public class ScoreManager : MonoBehaviour
     public void ResetScores()
     {
         hitManager.ResetScores();
+        UpdateUI();
     }
 
     public void UpdateUI()
@@ -56,7 +57,8 @@ public class ScoreManager : MonoBehaviour
 
     IEnumerator SwitchMenus()
     {
-        yield return new WaitUntil(()=> leaderboard.ShowScores());
+        yield return new WaitForSeconds(1.5f);
+        leaderboard.ShowScores();
         GameManager.instance.menuController.LeaderboardScreen();
     }
 }

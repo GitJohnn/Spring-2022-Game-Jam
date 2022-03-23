@@ -1325,6 +1325,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52bf5bb7466f3984980c91bf23379c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxScores: 12
+  leaderboardID: 1893
   Entries:
   - {fileID: 415319670}
   - {fileID: 2083508488}

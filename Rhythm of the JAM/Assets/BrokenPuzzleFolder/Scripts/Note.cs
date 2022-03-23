@@ -8,6 +8,7 @@ public class Note : MonoBehaviour
     public KeyCode keyToPress;
     public float hitYPos, goodHitYPos;
     public float AssignedTime { get; set; }
+    public Collider2D _collider;
 
     private SpriteRenderer _renderer;
     private double timeInstantiated;
@@ -16,12 +17,15 @@ public class Note : MonoBehaviour
     private float initialYPos;
     void Awake()
     {
+        _collider = GetComponent<Collider2D>();
+        _collider.enabled = false;
         initialYPos = transform.position.y;
         timeInstantiated = SongManager.GetAudioSourceTime();
         _renderer = GetComponent<SpriteRenderer>();
         noteDespawn = SongManager.Instance.noteDespawnY;
         _renderer.enabled = false;
         canBePressed = false;
+        
     }
 
     // Update is called once per frame
@@ -37,6 +41,7 @@ public class Note : MonoBehaviour
         else
         {
             _renderer.enabled = true;
+            _collider.enabled = true;
             transform.localPosition = Vector3.Lerp(Vector3.up * SongManager.Instance.noteSpawnY, Vector3.up * noteDespawn, t);            
         }
 
@@ -74,7 +79,7 @@ public class Note : MonoBehaviour
     {
         if (other.tag.Equals("Activator") && this.gameObject.activeInHierarchy)
         {
-            Debug.Log(gameObject.name);
+            //Debug.Log(gameObject.name + ", yPos is " + gameObject.transform.position.y);
             canBePressed = false;
             NoteHitsManager.instance.NoteMissed();
             Instantiate(MissEffect, transform.position, Quaternion.identity);

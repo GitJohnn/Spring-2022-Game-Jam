@@ -33,6 +33,7 @@ public class SongManager : MonoBehaviour
     }
 
     public static MidiFile midiFile;
+    private bool songStarted = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -44,9 +45,15 @@ public class SongManager : MonoBehaviour
         //Once game is in progress lets wait for the music to stop playing
         if (InProgress)
         {
-            if (!audioSource.isPlaying && !GameManager.instance.IsPaused)
+            if (audioSource.isPlaying)
             {
+                songStarted = true;
+            }
+            if (songStarted && !audioSource.isPlaying && !GameManager.instance.IsPaused)
+            {
+                //
                 SongEnded = true;
+                songStarted = false;
                 InProgress = false;
             }
         }

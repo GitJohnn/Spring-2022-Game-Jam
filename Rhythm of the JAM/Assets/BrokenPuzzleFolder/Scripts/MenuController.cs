@@ -26,15 +26,10 @@ public class MenuController : MonoBehaviour
         SwitchMenu(gameStartButton,new bool[] { false, false, true, false, false, false, false, false });
 
         mouseWarningPanel.SetActive(true);
-        
+
         EventSystem.current.SetSelectedGameObject(null);
         //set selected gameobject
         EventSystem.current.SetSelectedGameObject(mouseWarningEnterButton);
-    }
-
-    private void Update()
-    {
-
     }
 
     public void MouseWarning()
@@ -281,7 +276,7 @@ public class MenuController : MonoBehaviour
         SwitchMenu(selectedObj, menuSettings);
         fadePanel.FadeOut();        
         yield return new WaitUntil(() => !fadePanel.IsFadeIn);
-        fadePanel.gameObject.SetActive(false);
+        //fadePanel.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.1f);
     }
 
@@ -294,7 +289,7 @@ public class MenuController : MonoBehaviour
         yield return new WaitForSeconds(fadeOutDelay);
         fadePanel.FadeOut();
         yield return new WaitUntil(() => !fadePanel.IsFadeIn);
-        fadePanel.gameObject.SetActive(false);
+        //fadePanel.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.1f);
     }
 
