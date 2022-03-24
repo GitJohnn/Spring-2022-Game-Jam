@@ -20,7 +20,7 @@ public class Note : MonoBehaviour
         _collider = GetComponent<Collider2D>();
         _collider.enabled = false;
         initialYPos = transform.position.y;
-        timeInstantiated = SongManager.GetAudioSourceTime();
+        timeInstantiated = SongManager.Instance.GetAudioSourceTime();
         _renderer = GetComponent<SpriteRenderer>();
         noteDespawn = SongManager.Instance.noteDespawnY;
         _renderer.enabled = false;
@@ -31,7 +31,7 @@ public class Note : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        double timeSinceInstantiated = SongManager.GetAudioSourceTime() - timeInstantiated;
+        double timeSinceInstantiated = SongManager.Instance.GetAudioSourceTime() - timeInstantiated;
         float t = (float)(timeSinceInstantiated / (SongManager.Instance.noteTime * 2));
 
         if (t > 1)

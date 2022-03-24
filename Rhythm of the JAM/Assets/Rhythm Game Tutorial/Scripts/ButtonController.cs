@@ -23,7 +23,7 @@ public class ButtonController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyToPress))
         {
-            if (!GameManager.instance.IsPaused && SongManager.Instance.InProgress)
+            if (!GameManager.instance.IsPaused && SongManager.Instance.inProgress)
             {
                 theSR.color = pressedColor;
             }

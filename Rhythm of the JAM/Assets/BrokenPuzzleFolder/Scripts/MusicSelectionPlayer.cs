@@ -23,7 +23,7 @@ public class MusicSelectionPlayer : MonoBehaviour
         {
             if (!playingSong)
             {
-                PlayMusicWithFade(songSelection[songIndex].audio, 1.5f);
+                PlayMusicWithFade(songSelection[songIndex].audio, 0.75f);
                 playingSong = true;
             }
         }
@@ -48,6 +48,11 @@ public class MusicSelectionPlayer : MonoBehaviour
 
         StartCoroutine(UpdateMusicWithFade(activeSource, newClip, transitionTime));
 
+    }
+
+    public void StopMusicSelectionMusic()
+    {
+        audioSource.Stop();
     }
 
     private IEnumerator UpdateMusicWithFade(AudioSource activeSource, AudioClip newClip, float transitionTime)

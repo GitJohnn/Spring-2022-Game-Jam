@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1422844593481561065}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.445, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
   keyToPress: 274
   hitYPos: 0.25
   goodHitYPos: 0.05
+  _collider: {fileID: 0}
 --- !u!58 &-4337646126267928669
 CircleCollider2D:
   m_ObjectHideFlags: 0

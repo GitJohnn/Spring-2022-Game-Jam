@@ -8,9 +8,6 @@ public class MenuController : MonoBehaviour
 {
     public FadeController fadePanel;
 
-    public GameObject mouseWarningPanel;
-    public GameObject mouseWarningEnterButton;
-
     public GameObject mainMenu, gameScoresPanel, PausePanel, gameOptionsPanel, mainMenuOptionsPanel, gameScorePanel, leaderboardPanel, musicLibraryPanel;
 
     public GameObject gameStartButton, pauseFirstButton, optionsGameFirstButton, optionsMainMenuFirstButton, gamescoreFirstButton, leaderboardFirstButton, musicLibraryFirstButton;
@@ -32,16 +29,9 @@ public class MenuController : MonoBehaviour
         //EventSystem.current.SetSelectedGameObject(mouseWarningEnterButton);
     }
 
-    //public void MouseWarning()
-    //{
-    //    EventSystem.current.SetSelectedGameObject(null);
-    //    //set selected gameobject
-    //    EventSystem.current.SetSelectedGameObject(gameStartButton);
-    //}
-
     public void SinglePlayer()
     {
-        StartCoroutine(SwitchMenuCoroutine(musicLibraryFirstButton, new bool[] { false, true, false, false, false, false, false, true }));
+        StartCoroutine(SwitchMenuCoroutine(musicLibraryFirstButton, new bool[] { false, false, false, false, false, false, false, true }));
 
         //SwitchMenu(musicLibraryFirstButton, new bool[] { false, true, false, false, false, false, false, true });
 
@@ -81,7 +71,7 @@ public class MenuController : MonoBehaviour
 
     public void GameOptions()
     {
-        SwitchMenu(optionsGameFirstButton, new bool[] { true, true, false, true, false, false, false, false });
+        SwitchMenu(optionsGameFirstButton, new bool[] { true, false, false, true, false, false, false, false });
 
         ////clear selected gameobject
         //EventSystem.current.SetSelectedGameObject(null);
@@ -138,7 +128,7 @@ public class MenuController : MonoBehaviour
 
     public void PauseGame()
     {
-        SwitchMenu(pauseFirstButton, new bool[] { true, true, false, false, false, false, false, false });
+        SwitchMenu(pauseFirstButton, new bool[] { true, false, false, false, false, false, false, false });
 
         ////clear selected gameobject
         //EventSystem.current.SetSelectedGameObject(null);
@@ -153,8 +143,8 @@ public class MenuController : MonoBehaviour
         //gameScorePanel.SetActive(false);
         //leaderboardPanel.SetActive(false);
         //musicLibraryPanel.SetActive(false);
-        GameManager.instance.UpdatePauseMusic(true);
-        Time.timeScale = 0;
+        GameManager.instance.UpdatePauseMusic(true,false);
+        //Time.timeScale = 0;
     }
 
     public void UnPauseGame()
@@ -169,13 +159,13 @@ public class MenuController : MonoBehaviour
         //gameScorePanel.SetActive(false);
         //leaderboardPanel.SetActive(false);
         //musicLibraryPanel.SetActive(false);
-        GameManager.instance.UpdatePauseMusic(false);
-        Time.timeScale = 1;
+        GameManager.instance.UpdatePauseMusic(false,true);
+        //Time.timeScale = 1;
     }
 
     public void GameEndScreen()
     {
-        SwitchMenu(gamescoreFirstButton, new bool[] { false, true, false, false, false, true, false, false });
+        SwitchMenu(gamescoreFirstButton, new bool[] { false, false, false, false, false, true, false, false });
 
         ////clear selected gameobject
         //EventSystem.current.SetSelectedGameObject(null);
@@ -194,7 +184,7 @@ public class MenuController : MonoBehaviour
 
     public void LeaderboardScreen()
     {
-        SwitchMenu(leaderboardFirstButton, new bool[] { false, true, false, false, false, false, true, false });
+        SwitchMenu(leaderboardFirstButton, new bool[] { false, false, false, false, false, false, true, false });
 
         ////clear selected gameobject
         //EventSystem.current.SetSelectedGameObject(null);
@@ -214,8 +204,8 @@ public class MenuController : MonoBehaviour
     public void StartSongFromMusicLibrary()
     {
         //StartCoroutine(null, new bool[] { false, true, false, false, false, false, false, false });
-
-        SwitchMenu(null, new bool[] { false, true, false, false, false, false, false, false });
+        StartCoroutine(SwitchMenuCoroutine(null, new bool[] { false, true, false, false, false, false, false, false }));
+        //SwitchMenu(null, new bool[] { false, true, false, false, false, false, false, false });
 
         //PausePanel.SetActive(false);
         //gameScoresPanel.SetActive(true);
@@ -246,9 +236,19 @@ public class MenuController : MonoBehaviour
         //musicLibraryPanel.SetActive(true);
     }
 
+    public void ReturnMusicSelect()
+    {
+        StartCoroutine(SwitchMenuCoroutine(musicLibraryFirstButton, new bool[] { false, false, false, false, false, false, false, true }));
+        //SwitchMenu(musicLibraryFirstButton, new bool[] { false, false, false, false, false, false, false, true });
+
+
+        //GameManager.instance.UpdatePauseMusic(false);
+        //Time.timeScale = 1;
+    }
+
     public void QuitButton()
     {
-        Application.Quit();
+        //Application.Quit();
     }
 
     private void SwitchMenu(GameObject selectedObj, bool[] menuSettings)

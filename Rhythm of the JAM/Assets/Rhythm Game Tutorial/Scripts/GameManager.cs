@@ -16,8 +16,6 @@ public class GameManager : MonoBehaviour
 
     private MusicLibrary currentMusic;
 
-    private bool canStart = false;
-
     public bool PlayingGame { get; set; } = false;
     public bool IsPaused { get; set; } = false;
 
@@ -29,14 +27,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Game start conditions
-        if (canStart && !PlayingGame)
-        {
-            canStart = false;
-            PlayingGame = true;
-            songManager.CanStart = true;
-        }
-
         if (PlayingGame)
         {
             //Listen for pause button
@@ -56,43 +46,50 @@ public class GameManager : MonoBehaviour
             {
                 PlayingGame = false;
                 songManager.SongEnded = false;
-                menuController.GameEndScreen();
-                Debug.Log("Song has ended");
+                menuController.GameEndScreen();                
             }
         }
     }
 
     public void StartGame(MusicLibrary music)
     {
+        menuController.StartSongFromMusicLibrary();
         currentMusic = music;
         songManager.SetAudioClip(currentMusic.audio);
         songManager.SetFileLocation(currentMusic.fileLocation);
-        leaderboardController.SetLeaderboardID(currentMusic.leaderboardID);
-        canStart = true;
-        menuController.StartSongFromMusicLibrary();
+        leaderboardController.SetLeaderboardID(currentMusic.leaderboardID);                
+        PlayingGame = true;
+        songManager.GetFileData();
+        Debug.Log("Start Game");
     }
 
     public void ReturnMusicLibrary()
     {
         PlayingGame = false;
-        songManager.audioSource.Stop();        
-        menuController.UnPauseGame();
-        menuController.OpenMusicSelection();
+        songManager.audioSource.Stop();
+        Debug.Log("Stoping music");
+        //menuController.UnPauseGame();
+        //menuController.OpenMusicSelection();
+        menuController.ReturnMusicSelect();
         songManager.ExitSong();
         scoreManager.ResetScores();
+        UpdatePauseMusic(false, false);
     }
 
-    public void UpdatePauseMusic(bool isPaused)
+    public void UpdatePauseMusic(bool isPaused, bool playSong)
     {
         IsPaused = isPaused;
         //This function will switch between the music being paused and played.
         if (songManager.audioSource.isPlaying)
         {
+            Time.timeScale = 0;
             songManager.audioSource.Pause();
         }
         else
         {
-            songManager.audioSource.Play();
+            Time.timeScale = 1;
+            if(playSong)
+                songManager.audioSource.Play();
         }
     }
 

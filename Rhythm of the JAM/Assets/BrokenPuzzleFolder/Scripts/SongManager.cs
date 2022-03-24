@@ -17,9 +17,10 @@ public class SongManager : MonoBehaviour
 
     public int inputDelayInMilliseconds;
 
-    public bool CanStart { get; set; }
-    public bool InProgress { get; set; }
+    //public bool startingSong { get; set; }
+    public bool inProgress { get; set; }
     public bool SongEnded { get; set; }
+    private bool songStarted = false;
     public string fileLocation { get; set; }
     public float noteTime;
     public float noteSpawnY;
@@ -33,7 +34,7 @@ public class SongManager : MonoBehaviour
     }
 
     public static MidiFile midiFile;
-    private bool songStarted = false;
+    private AudioClip currentAudioClip;
     // Start is called before the first frame update
     void Awake()
     {
@@ -43,33 +44,39 @@ public class SongManager : MonoBehaviour
     private void Update()
     {
         //Once game is in progress lets wait for the music to stop playing
-        if (InProgress)
+        if (inProgress)
         {
-            if (audioSource.isPlaying)
-            {
-                songStarted = true;
-            }
-            if (songStarted && !audioSource.isPlaying && !GameManager.instance.IsPaused)
+            //if (audioSource.isPlaying)
+            //{
+            //    songStarted = true;
+            //}
+            if (songStarted && IsDone() && !GameManager.instance.IsPaused)
             {
                 SongEnded = true;
                 songStarted = false;
-                InProgress = false;
+                inProgress = false;
             }
         }
+
         //Wait for Game manager to tell us to start the game
-        if (CanStart)
+        if (!audioSource.isPlaying && inProgress && !GameManager.instance.IsPaused)
         {
-            CanStart = false;
-            InProgress = true;            
-            if (Application.streamingAssetsPath.StartsWith("http://") || Application.streamingAssetsPath.StartsWith("https://"))
-            {
-                StartCoroutine(ReadFromWebsite());
-            }
-            else
-            {
-                ReadFromFile();
-            }
-        }      
+            audioSource.time = 0;
+            audioSource.clip = currentAudioClip;
+            audioSource.Play();
+        }
+    }
+
+    public void GetFileData()
+    {
+        if (Application.streamingAssetsPath.StartsWith("http://") || Application.streamingAssetsPath.StartsWith("https://"))
+        {
+            StartCoroutine(ReadFromWebsite());
+        }
+        else
+        {
+            ReadFromFile();
+        }
     }
 
     private IEnumerator ReadFromWebsite()
@@ -107,27 +114,28 @@ public class SongManager : MonoBehaviour
         notes.CopyTo(array, 0);
 
         foreach (var lane in lanes) lane.SetTimeStamps(array);
-
         Invoke(nameof(StartSong), songDelayInSeconds);
     }
 
     public void StartSong()
-    {
+    {                        
+        inProgress = true;
+        songStarted = true;
+        audioSource.clip = currentAudioClip;
         audioSource.time = 0;
         audioSource.Play();
-        Debug.Log("Starting song");
     }
 
     public void ExitSong()
     {
         foreach (var lane in lanes) lane.ClearTimeStamps();
         SongEnded = false;
-        InProgress = false;
+        inProgress = false;
     }
 
-    public void SetAudioClip(AudioClip audio)
+    public void SetAudioClip(AudioClip clip)
     {
-        audioSource.clip = audio;
+        currentAudioClip = clip;
     }
 
     public void SetFileLocation(string location)
@@ -135,8 +143,13 @@ public class SongManager : MonoBehaviour
         fileLocation = location;
     }
 
-    public static double GetAudioSourceTime()
+    public double GetAudioSourceTime()
     {
-        return (double)Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency;
+        return (double)audioSource.time;//Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency;
+    }
+
+    private bool IsDone()
+    {
+        return !audioSource.loop && (audioSource.time >= currentAudioClip.length);
     }
 }
