@@ -34,7 +34,7 @@ public class ScoreManager : MonoBehaviour
     {
         leaderboard.SubmitScore(playerName.text, hitManager.CurrentScore);
         Debug.Log("Submit attempt " + playerName.text + " " + hitManager.CurrentScore);
-        StartCoroutine(SwitchMenus());
+        StartCoroutine(ShowLeaderboard());
         hitManager.ResetScores();
     }
 
@@ -55,9 +55,9 @@ public class ScoreManager : MonoBehaviour
         multiplierText.text = "x" + hitManager.CurrentMultiplier.ToString();
     }
 
-    IEnumerator SwitchMenus()
+    IEnumerator ShowLeaderboard()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.75f);
         leaderboard.ShowScores();
         GameManager.instance.menuController.LeaderboardScreen();
     }

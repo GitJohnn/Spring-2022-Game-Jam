@@ -23,7 +23,7 @@ public class MusicSelectionPlayer : MonoBehaviour
         {
             if (!playingSong)
             {
-                PlayMusicWithFade(songSelection[songIndex].audio, 0.5f);
+                PlayMusicWithFade(songSelection[songIndex].audio, 1.5f);
                 playingSong = true;
             }
         }

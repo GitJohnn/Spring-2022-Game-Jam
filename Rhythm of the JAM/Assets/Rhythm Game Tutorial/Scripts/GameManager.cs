@@ -54,10 +54,10 @@ public class GameManager : MonoBehaviour
             //Check if the track has ended
             if (songManager.SongEnded)
             {
-                Debug.Log("Song has ended");
                 PlayingGame = false;
                 songManager.SongEnded = false;
                 menuController.GameEndScreen();
+                Debug.Log("Song has ended");
             }
         }
     }

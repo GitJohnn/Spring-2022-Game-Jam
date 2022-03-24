@@ -25,19 +25,19 @@ public class MenuController : MonoBehaviour
 
         SwitchMenu(gameStartButton,new bool[] { false, false, true, false, false, false, false, false });
 
-        mouseWarningPanel.SetActive(true);
+        //mouseWarningPanel.SetActive(true);
 
-        EventSystem.current.SetSelectedGameObject(null);
-        //set selected gameobject
-        EventSystem.current.SetSelectedGameObject(mouseWarningEnterButton);
+        //EventSystem.current.SetSelectedGameObject(null);
+        ////set selected gameobject
+        //EventSystem.current.SetSelectedGameObject(mouseWarningEnterButton);
     }
 
-    public void MouseWarning()
-    {
-        EventSystem.current.SetSelectedGameObject(null);
-        //set selected gameobject
-        EventSystem.current.SetSelectedGameObject(gameStartButton);
-    }
+    //public void MouseWarning()
+    //{
+    //    EventSystem.current.SetSelectedGameObject(null);
+    //    //set selected gameobject
+    //    EventSystem.current.SetSelectedGameObject(gameStartButton);
+    //}
 
     public void SinglePlayer()
     {

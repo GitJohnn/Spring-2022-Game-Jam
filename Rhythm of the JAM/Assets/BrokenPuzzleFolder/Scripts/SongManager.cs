@@ -15,7 +15,7 @@ public class SongManager : MonoBehaviour
     public float songDelayInSeconds;
     public double marginOfError; // in seconds
 
-    //public int inputDelayInMilliseconds;
+    public int inputDelayInMilliseconds;
 
     public bool CanStart { get; set; }
     public bool InProgress { get; set; }
@@ -51,13 +51,12 @@ public class SongManager : MonoBehaviour
             }
             if (songStarted && !audioSource.isPlaying && !GameManager.instance.IsPaused)
             {
-                //
                 SongEnded = true;
                 songStarted = false;
                 InProgress = false;
             }
         }
-        //Wat for Game manager to tell us to start the game
+        //Wait for Game manager to tell us to start the game
         if (CanStart)
         {
             CanStart = false;
@@ -116,6 +115,7 @@ public class SongManager : MonoBehaviour
     {
         audioSource.time = 0;
         audioSource.Play();
+        Debug.Log("Starting song");
     }
 
     public void ExitSong()
@@ -137,6 +137,6 @@ public class SongManager : MonoBehaviour
 
     public static double GetAudioSourceTime()
     {
-        return ((double)Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency);
+        return (double)Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency;
     }
 }
