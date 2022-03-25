@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16075f024fcb4f444b923d7980d3db3b, type: 3}
-  m_Name: Interplanetary Spark
+  m_Name: Brother, Brother
   m_EditorClassIdentifier: 
-  songName: Interplanetary Spark
-  audio: {fileID: 8300000, guid: c6479410efb9dc647a1cc98d1e253d52, type: 3}
-  fileLocation: InterplanetarySpark_MIDI.mid
-  leaderboardID: 1930
+  songName: Brother, Brother
+  audio: {fileID: 8300000, guid: ffdd2c868d724ef4f8ec5f1baba9bb02, type: 3}
+  fileLocation: BrotherBrother_MIDI.mid
+  leaderboardID: 1945
+  endTimeInSeconds: 117

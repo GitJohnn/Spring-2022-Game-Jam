@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16075f024fcb4f444b923d7980d3db3b, type: 3}
-  m_Name: Furioso Melodia
+  m_Name: Nintendo Mii Theme
   m_EditorClassIdentifier: 
-  songName: Furioso melodia
-  audio: {fileID: 8300000, guid: a89d4dfa9d9a78847a27e790d39a8a25, type: 3}
-  fileLocation: Furioso Melodia.mid
-  leaderboardID: 1967
+  songName: Nintendo Wii Mii Theme
+  audio: {fileID: 8300000, guid: f9a1469220eabb641ba8a3d1308f0c26, type: 3}
+  fileLocation: Wii1.mid
+  leaderboardID: 2005
+  endTimeInSeconds: 113

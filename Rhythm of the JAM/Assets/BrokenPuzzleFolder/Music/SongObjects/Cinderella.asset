@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16075f024fcb4f444b923d7980d3db3b, type: 3}
-  m_Name: Friday Night
+  m_Name: Cinderella
   m_EditorClassIdentifier: 
-  songName: Friday Night
-  audio: {fileID: 8300000, guid: cec989d177caa5c47ab0562e919249f7, type: 3}
-  fileLocation: FridayNight_MIDI.mid
-  leaderboardID: 1946
+  songName: 24 Hour Cinderella
+  audio: {fileID: 8300000, guid: 441d28a0f2a82ea45a91099d6d5aa35f, type: 3}
+  fileLocation: Cindirella_MIDI.mid
+  leaderboardID: 1943
+  endTimeInSeconds: 107

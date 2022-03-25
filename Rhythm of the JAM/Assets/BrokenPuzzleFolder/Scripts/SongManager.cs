@@ -35,6 +35,8 @@ public class SongManager : MonoBehaviour
 
     public static MidiFile midiFile;
     private AudioClip currentAudioClip;
+    private float endSongTime;
+    private float currentSongTime = 0;
     // Start is called before the first frame update
     void Awake()
     {
@@ -44,27 +46,26 @@ public class SongManager : MonoBehaviour
     private void Update()
     {
         //Once game is in progress lets wait for the music to stop playing
-        if (inProgress)
+        if (inProgress && !GameManager.instance.IsPaused)
         {
-            //if (audioSource.isPlaying)
-            //{
-            //    songStarted = true;
-            //}
-            if (songStarted && IsDone() && !GameManager.instance.IsPaused)
+            //(songStarted && IsDone()) || 
+            if (currentSongTime >= endSongTime)
             {
                 SongEnded = true;
                 songStarted = false;
                 inProgress = false;
+                currentSongTime = 0;
             }
+            currentSongTime += Time.deltaTime;
         }
 
         //Wait for Game manager to tell us to start the game
-        if (!audioSource.isPlaying && inProgress && !GameManager.instance.IsPaused)
-        {
-            audioSource.time = 0;
-            audioSource.clip = currentAudioClip;
-            audioSource.Play();
-        }
+        //if (!audioSource.isPlaying && inProgress && !GameManager.instance.IsPaused)
+        //{
+        //    audioSource.time = 0;
+        //    audioSource.clip = currentAudioClip;
+        //    audioSource.Play();
+        //}
     }
 
     public void GetFileData()
@@ -141,6 +142,11 @@ public class SongManager : MonoBehaviour
     public void SetFileLocation(string location)
     {
         fileLocation = location;
+    }
+
+    public void SetSongTime(float endTime)
+    {
+        endSongTime = endTime;
     }
 
     public double GetAudioSourceTime()

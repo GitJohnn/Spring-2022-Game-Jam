@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16075f024fcb4f444b923d7980d3db3b, type: 3}
-  m_Name: LogicalStimulus
+  m_Name: Friday Night
   m_EditorClassIdentifier: 
-  songName: Logical Stimulus
-  audio: {fileID: 8300000, guid: b24788b5a95bae24d87d0dac256f7ca0, type: 3}
-  fileLocation: Logical_Stimulus.mid
-  leaderboardID: 1968
+  songName: Friday Night
+  audio: {fileID: 8300000, guid: cec989d177caa5c47ab0562e919249f7, type: 3}
+  fileLocation: FridayNight_MIDI.mid
+  leaderboardID: 1946
+  endTimeInSeconds: 94

@@ -16,3 +16,4 @@ MonoBehaviour:
   audio: {fileID: 8300000, guid: 73077f18e780e804ab4a819b801c8966, type: 3}
   fileLocation: Shop.mid
   leaderboardID: 2006
+  endTimeInSeconds: 124

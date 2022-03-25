@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
         currentMusic = music;
         songManager.SetAudioClip(currentMusic.audio);
         songManager.SetFileLocation(currentMusic.fileLocation);
+        songManager.SetSongTime(currentMusic.endTimeInSeconds);
         leaderboardController.SetLeaderboardID(currentMusic.leaderboardID);                
         PlayingGame = true;
         songManager.GetFileData();
